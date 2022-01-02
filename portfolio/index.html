@@ -5,11 +5,117 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexa Rise - Portfolio</title>
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="#portfolio">
+                    <svg>
+                        <use xlink:href="assets/svg/logo.svg#logo"></use>
+                    </svg>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                    <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="#video" class="nav-link">Video</a></li>
+                    <li class="nav-item"><a href="#price" class="nav-link">Price</a></li>
+                    <li class="nav-item"><a href="#contacts" class="nav-link">Contacts</a></li>
+                </ul>
+            </nav>
+            <div class="lang-switcher">
+                <span class="active">en</span>
+                <span>/</span>
+                <span>ru</span>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <section id="hero" class="section">
+                <div class="container">
+                    <div class="text-block">
+                        <h1>Alexa Rise</h1>
+                        <p>Save sincere emotions, romantic feelings and
+                            happy moments of life together with
+                            professional photographer Alexa Rise</p>
+                        <button class="button-gold">Hire me</button>
+                    </div>
+                </div>
+            </section>
+            <section class="section" id="skills">
+                <div class="wrapper">
+                    <h2 class="section-title">Skills</h2>
+                </div>
+                <div class="skills-items">
+                    <div class="skill-item">
+                        <h4>Digital photography</h4>
+                        <p>High-quality photos in the studio and on the nature</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Video shooting</h4>
+                        <p>Capture your moments so that they always stay with you</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Retouch</h4>
+                        <p>I strive to make photography surpass reality</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Audio</h4>
+                        <p>Professional sounds recording for video, advertising, portfolio</p>
+                    </div>
+                </div>
+            </section>
+            <section class="section" id="portfolio">
+                <div class="wrapper">
+                    <h2 class="section-title">Portfolio</h2>
+                </div>
+                <div class="button-block">
+                    <button class="button-black">Winter</button>
+                    <button class="button-black">Spring</button>
+                    <button class="button-black">Summer</button>
+                    <button class="button-black active">Autumn</button>
+                </div>
+                <div class="image-block">
+                    <div><img src="assets/img/portfolio-img1.jpg" alt="photo"></div>
+                    <div><img src="assets/img/portfolio-img2.jpg" alt="photo"></div>
+                    <div><img src="assets/img/portfolio-img3.jpg" alt="photo"></div>
+                    <div><img src="assets/img/portfolio-img4.jpg" alt="photo"></div>
+                    <div><img src="assets/img/portfolio-img5.jpg" alt="photo"></div>
+                    <div><img src="assets/img/portfolio-img6.jpg" alt="photo"></div>
+                </div>
+            </section>
+            <section class="section" id="video">
+                <div class="wrapper">
+                    <h2 class="section-title">Video</h2>
+                </div>
+                <div><img src="" alt=""></div>
+            </section>
+            <section class="section" id="price">
+                <div class="wrapper">
+                    <h2 class="section-title">Price</h2>
+                </div>
+            </section>
+            <section class="section" id="contacts">
+                <div class="container">
+                    <h2 class="section-title">Contact me</h2>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container"></div>
+    </footer>
+    <script src="index.js"></script>
 </body>
 
 </html>

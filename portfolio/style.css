@@ -1,0 +1,245 @@
+:root {
+  --black: #000;
+  --white: #FFF;
+  --gold: #bdae82;
+  --main-trans: 0.3s ease-out;
+}
+
+* {
+    *box-sizing: border-box;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    font-size: 20px;  
+    line-height: 2;
+    *line-height: 40px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+h1, h2, h3 {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+}
+
+h1 {
+    *margin: 0;
+    *line-height: 2;
+    font-size: 60px;
+}
+
+h2 {
+   font-size: 40px;
+   *line-height: 2;
+}
+
+h4 {
+    margin: 0;
+}
+
+a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+a:hover {
+  color: var(--gold);
+}
+
+svg {
+  fill: var(--white);
+}
+
+.logo svg {
+  width: 50px;
+  height: 50px;
+}
+
+.logo a:hover svg {
+  fill: var(--gold);
+}
+
+.container {
+    max-width: 1440px;
+    *width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    background: url('./assets/img/header-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center 0;
+}
+
+#hero .container {
+    background-image: url('./assets/img/header-bg.jpg');
+    background-position: center -90px;
+    background-repeat: no-repeat;
+    margin: 0 -20px;  
+    height: 820px;
+}
+
+.text-block {
+    padding-top: 160px;
+    padding-left: 79px;
+    *margin-left: 79px;
+    width: 500px;
+}
+
+#hero p {
+    margin: 0;
+    padding-top: 10px;
+    padding-right: 30px;
+    *border: 1px solid;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: inherit;
+    *color: inherit;
+    cursor: pointer;
+    width: 220px;
+    height: 55px;
+    *padding: 0;
+    *margin: 0;
+}
+
+
+.button-gold {
+    background-color: var(--gold);
+    border: 0;
+}
+
+.button-black {
+    *background-color: var(--gold);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+}
+
+#hero .button-gold {
+    margin-top: 25px;
+}
+
+#hero .button-gold:hover {
+    color: var(--white);
+}
+
+.nav {
+    margin-left: auto;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+}
+
+.nav-link {
+    padding: 0 20px;
+    line-height: 50px;
+}
+
+.lang-switcher .active {
+    color: var(--gold);
+}
+
+.wrapper {
+    width: 50%;
+    background-image: linear-gradient(to top, #000 39px, #bdae82 39px, #bdae82 41px, #000 41px);
+    margin: 0 auto;
+    text-align: center;
+    *overflow-x: hidden;
+}
+
+.section-title {
+    display: inline-block;
+    padding: 0 20px;
+    padding-top: 100px;    
+    background-color: var(--black);
+    *vertical-align: top;
+    color: var(--gold);
+}
+
+.skills-items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 60px; 
+}
+
+.skill-item {
+    background-position: center top;
+    background-repeat: no-repeat;
+    *flex-basis: 200px;
+    *flex-grow: 1;
+    *width: 25%;
+    width: 320px;
+    text-align: center;
+    padding: 100px 20px 8px 20px;
+}
+
+.skill-item:nth-child(1) {
+    background-image: url('assets/svg/camera.svg');
+    background-size: 62px 50px;
+}
+
+.skill-item:nth-child(2) {
+    background-image: url('assets/svg/video.svg');
+    background-size: 60px 50px;
+}
+
+.skill-item:nth-child(3) {
+    background-image: url('assets/svg/image.svg');
+    background-size: 66px 50px;
+}
+
+.skill-item:nth-child(4) {
+    background-image: url('assets/svg/mic.svg');
+    background-size: 32px 50px;
+}
+
+.skill-item p {
+    font-size: 18px;
+}
+
+.button-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: auto;
+    padding-top: 60px;
+}
+
+.button-block .active {
+    background-color: var(--gold);
+    color: var(--black);
+}
+
+.image-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    *flex-grow: 1;
+    *flex-basis: 200px;
+    padding-top: 60px;
+    gap: 25px; 
+}
+
+.image-block img {
+    width: 100%;
+    height: 100%;
+}
