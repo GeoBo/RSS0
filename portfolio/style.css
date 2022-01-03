@@ -2,25 +2,21 @@
   --black: #000;
   --white: #FFF;
   --gold: #bdae82;
-  --main-trans: 0.3s ease-out;
-}
-
-* {
-    *box-sizing: border-box;
+  --trans: 0.3s ease-out;
 }
 
 html {
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
-    font-size: 20px;  
+    font-size: 20px;
     line-height: 2;
-    *line-height: 40px;
 }
 
 body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 0;
     background-color: var(--black);
     color: var(--white);
 }
@@ -31,40 +27,43 @@ h1, h2, h3 {
 }
 
 h1 {
-    *margin: 0;
-    *line-height: 2;
     font-size: 60px;
 }
 
 h2 {
    font-size: 40px;
-   *line-height: 2;
 }
 
 h4 {
     margin: 0;
 }
 
+ul {
+    list-style: none;
+}
+
 a {
     color: var(--white);
     text-decoration: none;
-}
-
-a:hover {
-  color: var(--gold);
+    transition: var(--trans);
 }
 
 svg {
-  fill: var(--white);
+    fill: var(--white);
+    transition: var(--trans);
 }
 
 .logo svg {
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
 }
 
-.logo a:hover svg {
-  fill: var(--gold);
+a:hover{
+    color: var(--gold);
+}
+
+a:hover svg, button:hover svg {
+    fill: var(--gold);
 }
 
 .container {
@@ -108,18 +107,20 @@ button {
     font-family: inherit;
     font-size: inherit;
     background-color: inherit;
-    *color: inherit;
     cursor: pointer;
     width: 220px;
     height: 55px;
-    *padding: 0;
-    *margin: 0;
+    transition: var(--trans);
 }
-
 
 .button-gold {
     background-color: var(--gold);
     border: 0;
+    *color: var(--black);
+}
+
+.button-gold:hover {
+    color: var(--white);
 }
 
 .button-black {
@@ -128,12 +129,12 @@ button {
     color: var(--gold);
 }
 
-#hero .button-gold {
-    margin-top: 25px;
+.button-black:hover {
+    color: var(--white);
 }
 
-#hero .button-gold:hover {
-    color: var(--white);
+#hero .button-gold {
+    margin-top: 25px;
 }
 
 .nav {
@@ -143,8 +144,7 @@ button {
 .nav-list {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    list-style: none;
+    align-items: center;    
 }
 
 .nav-link {
@@ -227,6 +227,7 @@ button {
 .button-block .active {
     background-color: var(--gold);
     color: var(--black);
+    cursor: default;
 }
 
 .image-block {
@@ -257,12 +258,18 @@ button {
     border: 0;
 }
 
+.video-player svg {
+    width: 130px;
+    height: 130px;
+}
+
 .price-block {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
     text-align: center;
     padding-top: 60px;
+    gap: 25px; 
 }
 
 .price-block div {
@@ -290,3 +297,90 @@ button {
     margin-top: 43px;
 }
 
+#contacts .container {
+    background-image: url('./assets/img/contacts.jpg');
+    background-position: center 0;
+    background-repeat: no-repeat;   
+
+    *background-size: auto 700px;
+    *background-position: center center;
+
+    margin: 0 -20px;  
+    margin-top: 100px;
+    height: 700px;
+    *text-align: right;
+}
+
+#contacts .section-title {
+    background-color: inherit;
+    padding-left: 0;
+}
+
+.contact-block {
+    width: 450px;
+    padding-top: 60px;
+    padding-right: 20px;
+    margin-left: auto;
+}
+
+input, textarea {
+    display: block;
+    margin-top: 20px;
+    height: 50px;
+    background-color: rgba(0,0,0,0.5);
+    border: 2px solid var(--gold);
+    *font-size: 20px;
+    font-size: inherit;
+    padding: 5px 0;
+    padding-left: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit; 
+    color: var(--gold); 
+}
+
+textarea {
+    height: 100px;
+    line-height: inherit;
+}
+
+input:focus-visible, textarea:focus-visible {
+    outline-width: 0;
+}
+
+::placeholder {
+    font-family: inherit;
+    color: #bdae82;
+    font-size: 20px;
+}
+
+.contact-block button{
+    margin-top: 30px;
+}
+
+.footer .container {
+    height: 150px;
+    display: flex;
+    *justify-content: center;
+    *justify-content: space-between;
+    align-items: center;
+}
+
+.footer svg {
+    width: 32px;
+    height: 32px;
+}
+
+.align-center {
+    margin: 0 auto;
+}
+
+.github-block, .social-link {
+    display: flex;
+    *align-items: center;
+    gap: 20px;
+}
+
+.social-link li {
+    line-height: 0;
+}

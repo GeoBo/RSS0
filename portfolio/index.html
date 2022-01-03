@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
+    <link rel="shortcut icon" type="image/jpg" href="assets/img/favicon.ico" />
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +18,9 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="#portfolio">
+                <a href="#">
                     <svg>
-                        <use xlink:href="assets/svg/logo.svg#logo"></use>
+                        <use xlink:href="assets/svg/sprite.svg#logo"></use>
                     </svg>
                 </a>
             </div>
@@ -35,7 +36,7 @@
             <div class="lang-switcher">
                 <span class="active">en</span>
                 <span>/</span>
-                <span>ru</span>
+                <a href="#">ru</a>
             </div>
         </div>
     </header>
@@ -100,7 +101,11 @@
                 </div>
                 <div class="video-player">
                     <img src="assets/video/video-player.jpg" alt="video-player">
-                    <button><img src="assets/svg/play_hover.svg" alt="play_hover"></button>
+                    <button>
+                        <svg>
+                            <use xlink:href="assets/svg/sprite.svg#play_hover"></use>
+                        </svg>
+                    </button>
                 </div>
             </section>
             <section class="section" id="price">
@@ -142,13 +147,56 @@
             </section>
             <section class="section" id="contacts">
                 <div class="container">
-                    <h2 class="section-title">Contact me</h2>
+                    <div class="contact-block">
+                        <h2 class="section-title">Contact me</h2>
+                        <input type="email" placeholder="E-mail">
+                        <input type="tel" placeholder="Phone">
+                        <textarea name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                        <button class="button-gold">Send message</button>
+                    </div>
                 </div>
             </section>
         </div>
     </main>
     <footer class="footer">
-        <div class="container"></div>
+        <div class="container">
+            <div class="github-block">
+                <span>©</span>
+                <span>2022</span>
+                <span><a href="https://github.com/GeoBo/">github</a></span>
+            </div>
+            <span class="align-center"><a href="https://rs.school/js-stage0/">Rolling Scopes School</a></span>
+            <ul class="social-link">
+                <li>
+                    <a href="#">
+                        <svg>
+                            <use xlink:href="assets/svg/sprite.svg#inst"></use>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg>
+                            <use xlink:href="assets/svg/sprite.svg#fb"></use>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg>
+                            <use xlink:href="assets/svg/sprite.svg#tw"></use>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg>
+                            <use xlink:href="assets/svg/sprite.svg#pinterest"></use>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </footer>
     <script src="index.js"></script>
 </body>
