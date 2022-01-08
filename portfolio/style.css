@@ -1,0 +1,391 @@
+:root {
+  --black: #000;
+  --white: #FFF;
+  --gold: #bdae82;
+  --trans: 0.3s ease-out;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    font-size: 20px;
+    line-height: 2;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;  
+    background-color: var(--black);
+    color: var(--white);
+}
+
+h1, h2, h3 {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+h2 {
+   font-size: 40px;
+}
+
+h4 {
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--trans);
+}
+
+svg {
+    fill: var(--white);
+    transition: var(--trans);
+}
+
+.logo {
+    line-height: 0;
+}
+
+.logo svg {
+    width: 50px;
+    height: 50px;
+}
+
+a:hover{
+    color: var(--gold);
+}
+
+a:hover svg, button:hover svg {
+    fill: var(--gold);
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    background: url('./assets/img/header-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center 0;
+    user-select: none;
+}
+
+#hero .container {
+    background-image: url('./assets/img/header-bg.jpg');
+    background-position: center -90px;
+    background-repeat: no-repeat;
+    margin: 0 -20px;  
+    height: 820px;
+}
+
+.text-block {
+    padding-top: 160px;
+    padding-left: 60px;
+    width: 500px;
+}
+
+#hero p {
+    margin: 0;
+    padding-top: 10px;
+    padding-right: 30px;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: inherit;
+    cursor: pointer;
+    width: 220px;
+    height: 55px;
+    user-select: none;
+    transition: var(--trans);
+}
+
+.button-gold {
+    background-color: var(--gold);
+    border: 0;
+}
+
+.button-gold:hover {
+    color: var(--white);
+}
+
+.button-black {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+}
+
+.button-black:hover {
+    color: var(--white);
+}
+
+#hero .button-gold {
+    margin-top: 25px;
+}
+
+.nav {
+    margin-left: auto;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center; 
+}
+
+.nav-link {
+    padding: 0 15px;
+    line-height: 50px;
+}
+
+li:last-child .nav-link {
+    padding-right: 31px;
+}
+
+.lang-switcher .active {
+    color: var(--gold);
+}
+
+.wrapper {
+    width: 50%;
+    background-image: linear-gradient(to top, #000 39px, #bdae82 39px, #bdae82 41px, #000 41px);
+    margin: 0 auto;
+    text-align: center;
+    *overflow-x: hidden;
+}
+
+.section-title {
+    display: inline-block;
+    padding: 0 20px;
+    padding-top: 100px;    
+    background-color: var(--black);
+    color: var(--gold);
+}
+
+.skills-items {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 60px; 
+}
+
+.skill-item {
+    background-position: center top;
+    background-repeat: no-repeat;
+    flex-basis: 280px;
+    text-align: center;
+    padding: 100px 20px 8px 20px;
+}
+
+.skill-item:nth-child(1) {
+    background-image: url('assets/svg/camera.svg');
+    background-size: 62px 50px;
+}
+
+.skill-item:nth-child(2) {
+    background-image: url('assets/svg/video.svg');
+    background-size: 60px 50px;
+}
+
+.skill-item:nth-child(3) {
+    background-image: url('assets/svg/image.svg');
+    background-size: 66px 50px;
+}
+
+.skill-item:nth-child(4) {
+    background-image: url('assets/svg/mic.svg');
+    background-size: 32px 50px;
+}
+
+.skill-item p {
+    font-size: 18px;
+    padding-top: 20px;
+    margin: 0;
+}
+
+.button-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: auto;
+    padding-top: 60px;
+}
+
+.button-block .active {
+    background-color: var(--gold);
+    color: var(--black);
+    cursor: default;
+}
+
+.image-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 60px;
+    gap: 25px; 
+    line-height: 0;
+}
+
+.video-player {
+    position: relative;
+    display: flex;
+    *flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.video-player img {
+    width: 100%;
+    height: 100%;
+}
+
+.video-player button {
+    position: absolute;
+    border: 0;
+    padding: 0;
+    transform: translateY(-50%);
+    top: 50%; 
+    height: 65px;
+}
+
+.video-player svg {
+    width: 130px;
+    height: 130px;
+}
+
+.price-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: center;
+    padding-top: 60px;
+    gap: 25px; 
+
+}
+
+.price-block div {
+    flex-basis: 450px;
+    box-sizing: border-box;
+    border: 3px solid var(--gold);
+    padding: 43px; 
+    padding-bottom: 40px; 
+}
+
+.price-block h3 {
+    font-size: 28px;
+}
+
+.price-block span {
+    display: block; 
+    font-size: 18px;
+}
+
+.price-block .price {
+    color: var(--gold);
+    font-family: Merriweather;
+    font-size: 24px;
+    padding: 20px; 
+}
+
+.price-block button {
+    margin-top: 40px;
+}
+
+#contacts .container {
+    background-image: url('./assets/img/contacts.jpg');
+    background-position: center 0;
+    background-repeat: no-repeat;   
+    margin: 0 -20px;  
+    margin-top: 100px;
+    height: 700px;
+}
+
+.contact-block {
+    width: 450px;
+    padding-top: 60px;
+    *padding-right: 20px;
+    margin-left: auto;
+}
+
+.contact-block .section-title {
+    background-color: inherit;
+    padding: 0;
+    padding-bottom: 20px;
+}
+
+input, textarea {
+    display: block;
+    box-sizing: border-box;
+    margin-top: 20px;
+    padding: 3px 18px;
+    border: 2px solid var(--gold);   
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit; 
+    color: var(--gold); 
+    background-color: rgba(0,0,0,0.5);
+}
+
+input {
+    height: 50px;
+}
+
+textarea {
+    height: 100px;
+    line-height: inherit;
+}
+
+input:focus-visible, textarea:focus-visible {
+    outline-width: 0;
+}
+
+::placeholder {
+    font-family: inherit;
+    color: #bdae82;
+    font-size: 20px;
+}
+
+.contact-block button{
+    margin-top: 30px;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+}
+
+.footer svg {
+    width: 32px;
+    height: 32px;
+}
+
+.github-block, .social-link {
+    display: flex;
+    gap: 20px;  
+}
+
+.github-block {
+    padding-right: 15px;
+}
+
+.social-link li {
+    line-height: 0;
+}
