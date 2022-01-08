@@ -16,7 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0;
+    margin: 0;  
     background-color: var(--black);
     color: var(--white);
 }
@@ -40,6 +40,7 @@ h4 {
 
 ul {
     list-style: none;
+    padding: 0;
 }
 
 a {
@@ -51,6 +52,10 @@ a {
 svg {
     fill: var(--white);
     transition: var(--trans);
+}
+
+.logo {
+    line-height: 0;
 }
 
 .logo svg {
@@ -68,7 +73,6 @@ a:hover svg, button:hover svg {
 
 .container {
     max-width: 1440px;
-    *width: 1440px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -79,6 +83,7 @@ a:hover svg, button:hover svg {
     background: url('./assets/img/header-bg.jpg');
     background-repeat: no-repeat;
     background-position: center 0;
+    user-select: none;
 }
 
 #hero .container {
@@ -91,8 +96,7 @@ a:hover svg, button:hover svg {
 
 .text-block {
     padding-top: 160px;
-    padding-left: 79px;
-    *margin-left: 79px;
+    padding-left: 60px;
     width: 500px;
 }
 
@@ -100,7 +104,6 @@ a:hover svg, button:hover svg {
     margin: 0;
     padding-top: 10px;
     padding-right: 30px;
-    *border: 1px solid;
 }
 
 button {
@@ -110,13 +113,13 @@ button {
     cursor: pointer;
     width: 220px;
     height: 55px;
+    user-select: none;
     transition: var(--trans);
 }
 
 .button-gold {
     background-color: var(--gold);
     border: 0;
-    *color: var(--black);
 }
 
 .button-gold:hover {
@@ -124,7 +127,6 @@ button {
 }
 
 .button-black {
-    *background-color: var(--gold);
     border: 1px solid var(--gold);
     color: var(--gold);
 }
@@ -143,13 +145,16 @@ button {
 
 .nav-list {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;    
+    align-items: center; 
 }
 
 .nav-link {
-    padding: 0 20px;
+    padding: 0 15px;
     line-height: 50px;
+}
+
+li:last-child .nav-link {
+    padding-right: 31px;
 }
 
 .lang-switcher .active {
@@ -169,24 +174,19 @@ button {
     padding: 0 20px;
     padding-top: 100px;    
     background-color: var(--black);
-    *vertical-align: top;
     color: var(--gold);
 }
 
 .skills-items {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
     padding-top: 60px; 
 }
 
 .skill-item {
     background-position: center top;
     background-repeat: no-repeat;
-    *flex-basis: 200px;
-    *flex-grow: 1;
-    *width: 25%;
-    width: 320px;
+    flex-basis: 280px;
     text-align: center;
     padding: 100px 20px 8px 20px;
 }
@@ -213,6 +213,8 @@ button {
 
 .skill-item p {
     font-size: 18px;
+    padding-top: 20px;
+    margin: 0;
 }
 
 .button-block {
@@ -234,28 +236,32 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    *flex-grow: 1;
-    *flex-basis: 200px;
     padding-top: 60px;
     gap: 25px; 
-}
-
-.image-block img {
-    width: 100%;
-    height: 100%;
+    line-height: 0;
 }
 
 .video-player {
     position: relative;
     display: flex;
+    *flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding-top: 60px;
 }
 
+.video-player img {
+    width: 100%;
+    height: 100%;
+}
+
 .video-player button {
     position: absolute;
     border: 0;
+    padding: 0;
+    transform: translateY(-50%);
+    top: 50%; 
+    height: 65px;
 }
 
 .video-player svg {
@@ -266,16 +272,19 @@ button {
 .price-block {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
     padding-top: 60px;
     gap: 25px; 
+
 }
 
 .price-block div {
-    width: 450px;
+    flex-basis: 450px;
+    box-sizing: border-box;
     border: 3px solid var(--gold);
     padding: 43px; 
+    padding-bottom: 40px; 
 }
 
 .price-block h3 {
@@ -283,10 +292,11 @@ button {
 }
 
 .price-block span {
-    display: block;
+    display: block; 
+    font-size: 18px;
 }
 
-.price {
+.price-block .price {
     color: var(--gold);
     font-family: Merriweather;
     font-size: 24px;
@@ -294,49 +304,46 @@ button {
 }
 
 .price-block button {
-    margin-top: 43px;
+    margin-top: 40px;
 }
 
 #contacts .container {
     background-image: url('./assets/img/contacts.jpg');
     background-position: center 0;
     background-repeat: no-repeat;   
-
-    *background-size: auto 700px;
-    *background-position: center center;
-
     margin: 0 -20px;  
     margin-top: 100px;
     height: 700px;
-    *text-align: right;
-}
-
-#contacts .section-title {
-    background-color: inherit;
-    padding-left: 0;
 }
 
 .contact-block {
     width: 450px;
     padding-top: 60px;
-    padding-right: 20px;
+    *padding-right: 20px;
     margin-left: auto;
+}
+
+.contact-block .section-title {
+    background-color: inherit;
+    padding: 0;
+    padding-bottom: 20px;
 }
 
 input, textarea {
     display: block;
-    margin-top: 20px;
-    height: 50px;
-    background-color: rgba(0,0,0,0.5);
-    border: 2px solid var(--gold);
-    *font-size: 20px;
-    font-size: inherit;
-    padding: 5px 0;
-    padding-left: 20px;
-    width: 100%;
     box-sizing: border-box;
+    margin-top: 20px;
+    padding: 3px 18px;
+    border: 2px solid var(--gold);   
+    width: 100%;
+    font-size: inherit;
     font-family: inherit; 
     color: var(--gold); 
+    background-color: rgba(0,0,0,0.5);
+}
+
+input {
+    height: 50px;
 }
 
 textarea {
@@ -359,11 +366,10 @@ input:focus-visible, textarea:focus-visible {
 }
 
 .footer .container {
-    height: 150px;
     display: flex;
-    *justify-content: center;
-    *justify-content: space-between;
+    justify-content: space-between;
     align-items: center;
+    height: 150px;
 }
 
 .footer svg {
@@ -371,14 +377,13 @@ input:focus-visible, textarea:focus-visible {
     height: 32px;
 }
 
-.align-center {
-    margin: 0 auto;
-}
-
 .github-block, .social-link {
     display: flex;
-    *align-items: center;
-    gap: 20px;
+    gap: 20px;  
+}
+
+.github-block {
+    padding-right: 15px;
 }
 
 .social-link li {
