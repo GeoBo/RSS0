@@ -72,14 +72,14 @@ a:hover svg, button:hover svg {
 }
 
 .container {
-    *max-width: 1400px;
-    width: 1400px;
+    max-width: 1400px;
+    *width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
 .header .container {
-    display: flex;
+    display: flex;  
     align-items: center;
     background: url('./assets/img/header-bg.jpg');
     background-repeat: no-repeat;
@@ -101,7 +101,7 @@ a:hover svg, button:hover svg {
     width: 500px;
 }
 
-#hero p {
+.text-block p {
     margin: 0;
     padding-top: 10px;
     padding-right: 30px;
@@ -136,12 +136,13 @@ button {
     color: var(--white);
 }
 
-#hero .button-gold {
+.text-block .button-gold {
     margin-top: 25px;
 }
 
 .nav {
     margin-left: auto;
+    height: 90px;
 }
 
 .nav-list {
@@ -181,6 +182,7 @@ li:last-child .nav-link {
 .skills-items {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding-top: 60px; 
 }
 
@@ -390,4 +392,105 @@ input:focus-visible, textarea:focus-visible {
 
 .social-link li {
     line-height: 0;
+}
+
+.lang-switcher {
+    line-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70px;
+}
+
+.lang-switcher a {
+    padding: 0 21px;
+}
+
+.lang-switcher .active {
+    padding: 0 10px;
+}
+
+.menu-button {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 4px; 
+}
+
+.menu-button .line {
+    display: block;
+    width: 50px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #ecf0f1;
+    transition: var(--trans);
+}
+
+
+@media (max-width: 769px) {
+  .header .container {
+    padding: 0 60px;    
+  }
+
+  .nav-list {
+    display: none;
+  }
+
+  .menu-button {
+    display: flex;
+  }
+
+  .lang-switcher {
+    width: 115px;
+  } 
+
+  .header .container {
+    background-image: url('./assets/img/header-bg2.jpg');
+  }
+
+  #hero .container {
+    background-image: url('./assets/img/header-bg2.jpg');
+    height: 500px;
+  }
+
+  .text-block {
+      padding-left: 40px;
+      padding-top: 78px;
+      width: 430px;
+  }
+
+  .text-block h1 {
+      font-size: 32px;
+  }
+
+  .text-block p {
+      padding-top: 20px;
+      line-height: 24px;
+  }
+
+  .text-block .button-gold {
+      margin-top: 60px;
+   }
+
+  .section-title {     
+      font-size: 32px;
+      line-height: 80px;
+      padding-top: 80px;     
+  }
+    .skills-items {
+        justify-content: center;
+        *justify-content: space-around;
+        padding-top: 45px; 
+        gap: 45px;
+        *gap: 25px;
+    }
+    .skill-item {
+        *flex-basis: 300px;
+        *padding: 80px 10px 0 10px;
+        padding: 80px 10px 30px 10px;
+    }
+
+    .skill-item p {
+        line-height: 22px;
+    }
 }
