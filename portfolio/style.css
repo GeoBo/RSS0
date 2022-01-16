@@ -19,7 +19,6 @@ body {
     margin: 0;
     background-color: var(--black);
     color: var(--white);
-    *overflow-x: hidden;
 }
 
 h1, h2, h3 {
@@ -74,7 +73,6 @@ a:hover svg, button:hover svg {
 
 .container {
     max-width: 1400px;
-    *width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
     overflow-x: hidden;
@@ -170,7 +168,6 @@ li:last-child .nav-link {
     background-image: linear-gradient(to top, #000 39px, #bdae82 39px, #bdae82 41px, #000 41px);
     margin: 0 auto;
     text-align: center;
-    *overflow-x: hidden;
 }
 
 .section-title {
@@ -322,7 +319,6 @@ li:last-child .nav-link {
 .contact-block {
     width: 450px;
     padding-top: 60px;
-    *padding-right: 20px;
     margin-left: auto;
 }
 
@@ -399,25 +395,27 @@ input:focus-visible, textarea:focus-visible {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    *width: 70px;
 }
 
 .lang-switcher a {
     padding-left: 10px;
-    *padding: 0 21px;
 }
 
 .lang-switcher .active {
-    *padding: 0 10px;
     padding-right: 10px;
     padding-left: 2px;
 }
 
 .menu-button {
+    position: absolute;
+    right: 60px;
+    top: 25px;
     display: none;
     flex-direction: column;
     justify-content: space-between;
     padding-left: 4px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .menu-button .line {
@@ -429,11 +427,44 @@ input:focus-visible, textarea:focus-visible {
     transition: var(--trans);
 }
 
-@media (max-width: 1440px) {
-    .lang-switcher a {
-        padding: 0 21px;
-    }
+.menu-button.active {
+    position: fixed;   
+}
 
+.menu-button:hover .line {
+    background-color: var(--gold);
+}
+
+.active .line:nth-child(1){
+    transform: translateX(-4px) translateY(17px) rotate(45deg);
+}
+
+.active .line:nth-child(2){
+    opacity: 0;
+}
+
+.active .line:nth-child(3){
+    transform: translateX(-5px) translateY(-9px) rotate(-45deg);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(40,40,40, .75);
+    transition: var(--trans);
+    display: none;
+}
+
+.overlay[aria-hidden="true"] {
+    width: 100vw;
+    opacity: 0;
+    visibility: hidden;  
+}
+
+@media (max-width: 1440px) {   
     .lang-switcher .active {
         padding: 0 10px;
     }
@@ -450,7 +481,6 @@ input:focus-visible, textarea:focus-visible {
     }
 
     .skill-item p {
-        *line-height: 22px;
         padding-top: 20px;
     }
     .video-player {
@@ -475,15 +505,51 @@ input:focus-visible, textarea:focus-visible {
     }
 
     .nav-list {
-        display: none;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: start;
+        *position: absolute;
+        position: fixed;
+        right: 0;
+        margin: 0;
+        padding-top: 127px;
+        padding-left: 102px;    
+        max-width: 620px;
+        width: 81%;
+        opacity: 0;
+        *height: 133vw; 
+        *height: 1024px; 
+        height: 100%; 
+        font-size: 35px;
+        z-index: -1;
+        background-color: var(--black);
+        transition: var(--trans);
+    }
+
+    .nav-item{
+        padding: 9px;
+    }
+
+    .nav-list.open {      
+        opacity: 1;
+        z-index: 2;
     }
 
     .menu-button {
         display: flex;
+        z-index: 2;
     }
 
     .header .container {
         background-image: url('./assets/img/header-bg2.jpg');
+    }
+
+     .lang-switcher {
+        padding: 0 54px;
+    }
+
+    .lang-switcher a {
+        padding: 0 21px;
     }
 
     #hero .container {
@@ -531,8 +597,6 @@ input:focus-visible, textarea:focus-visible {
     }
 
     .video-player {
-        *margin: 0 -20px;       
-        *margin-top: 50px;
         height: 418px;
         background-image: url("assets/video/video-player2.jpg");
     }
@@ -577,13 +641,32 @@ input:focus-visible, textarea:focus-visible {
         padding-right: 0;
         gap: 22px;
     }
+
+    .overlay {
+        display: block;
+    }
 }
 
 @media (max-width: 500px) {
     .header .container {
         padding: 0 20px;
-    }  
+    }
 
+    .nav-list {
+        width: 100%; 
+        padding-left: 60px;
+        overflow: hidden; 
+        *height: 680px;
+    }
+    
+    .lang-switcher {
+        *padding-right: 100px;
+        padding-left: 0;
+    }
+    
+    .menu-button {
+        right: 20px;
+    }
     .text-block {
         width: auto;
         padding-left: 20px;
@@ -609,8 +692,5 @@ input:focus-visible, textarea:focus-visible {
 
     .contact-block {
         width: auto;
-        *padding-top: 60px;
-        *padding-right: 20px;
-        *margin-left: auto;
     }
 }
