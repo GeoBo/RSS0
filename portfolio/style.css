@@ -542,6 +542,8 @@ input:focus-visible, textarea:focus-visible {
 
     .header .container {
         background-image: url('./assets/img/header-bg2.jpg');
+        *background-position: -5px -30px;
+        *background-size: auto 620px;
     }
 
      .lang-switcher {
@@ -554,7 +556,13 @@ input:focus-visible, textarea:focus-visible {
 
     #hero .container {
         background-image: url('./assets/img/header-bg2.jpg');
+        *background-position: -5px -120px;
+        *background-size: auto 620px;
         height: 500px;
+
+        *background-position: -7px -120px;
+        *background-size: auto 76%;
+        *background-size: contain;
     }
 
     .text-block {
@@ -598,6 +606,9 @@ input:focus-visible, textarea:focus-visible {
 
     .video-player {
         height: 418px;
+        *background-position: 0px 6px;
+        *background-size: auto 409px;
+        *background-size: 106%;
         background-image: url("assets/video/video-player2.jpg");
     }
 
@@ -612,6 +623,8 @@ input:focus-visible, textarea:focus-visible {
 
     #contacts .container {
         background-image: url(./assets/img/contacts2.jpg);
+        *background-position: -5px -20px;
+        *background-size: auto 600px;
         margin-top: 80px;
         height: 600px;
     }
