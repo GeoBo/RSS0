@@ -5,6 +5,12 @@
     --trans: 0.3s ease-out;
 }
 
+:root {
+    --body-color: #000;
+    --text-color: #fff;
+    --hover-color: #bdae82;
+}
+
 html {
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
@@ -17,8 +23,10 @@ body {
     flex-direction: column;
     justify-content: space-between;
     margin: 0;
-    background-color: var(--black);
-    color: var(--white);
+    *background-color: var(--black);
+    background-color: var(--body-color);
+    *color: var(--white);
+    color: var(--text-color);
 }
 
 h1, h2, h3 {
@@ -44,13 +52,15 @@ ul {
 }
 
 a {
-    color: var(--white);
+    *color: var(--white);
+    color: var(--text-color);
     text-decoration: none;
     transition: var(--trans);
 }
 
 svg {
-    fill: var(--white);
+    *fill: var(--white);
+    fill: var(--text-color);
     transition: var(--trans);
 }
 
@@ -83,17 +93,38 @@ a:hover svg, button:hover svg {
     align-items: center;
     background: url('./assets/img/header-bg.jpg');
     background-repeat: no-repeat;
-    background-position: center 0;
+    background-position: center 0px;
     user-select: none;   
 }
 
 #hero .container {
     background-image: url('./assets/img/header-bg.jpg');
     background-position: center -90px;
+    *background-position: -1px -90px;
     background-repeat: no-repeat;
     margin: 0 -20px;
     height: 820px;
 }
+
+.white-theme .header .container {
+    background: url('./assets/img/header-bg-white.jpg'); 
+    background-position: -1px 0;
+}
+
+/* .header.white-theme .container {
+    background: url('./assets/img/header-bg-white.jpg'); 
+    background-position: -1px 0;
+} */
+
+.white-theme #hero .container {
+    background: url('./assets/img/header-bg-white.jpg');
+    background-position: -1px -90px;
+}
+
+/* #hero.white-theme .container {
+    background: url('./assets/img/header-bg-white.jpg');
+    background-position: -1px -90px;
+} */
 
 .text-block {
     padding-top: 160px;
@@ -110,6 +141,7 @@ a:hover svg, button:hover svg {
 button {
     font-family: inherit;
     font-size: inherit;
+    color: inherit;
     background-color: inherit;
     cursor: pointer;
     width: 220px;
@@ -118,13 +150,23 @@ button {
     transition: var(--trans);
 }
 
+.white-theme #hero button {
+    background-color: var(--white);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .button-gold {
     background-color: var(--gold);
+    color: var(--black);
     border: 0;
 }
 
 .button-gold:hover {
     color: var(--white);
+}
+
+.white-theme #hero button:hover {
+    color: var(--gold);
 }
 
 .button-black {
@@ -151,31 +193,50 @@ button {
 }
 
 .nav-link {
-    padding: 0 15px;
+    padding: 0 16px;
     line-height: 50px;
 }
 
 li:last-child .nav-link {
-    padding-right: 31px;
+    padding-right: 38px;
 }
 
-.lang-switcher .active {
-    color: var(--gold);
+.theme-switcher {
+    line-height: 0;
+    width: auto;
+    height: auto;
+    border: none;
+    padding: 0;
+    padding-right: 1px;
+}
+
+.theme-switcher svg{
+    width: 45px;
+    height: 45px;
 }
 
 .wrapper {
     width: 50%;
-    background-image: linear-gradient(to top, #000 39px, #bdae82 39px, #bdae82 41px, #000 41px);
+    background-image: linear-gradient(to top, var(--body-color) 39px, var(--gold) 39px, var(--gold) 41px, var(--body-color) 41px);
     margin: 0 auto;
     text-align: center;
+}
+
+.white-theme .wrapper {
+    background-image: linear-gradient(to top, var(--body-color) 39px, var(--text-color) 39px, var(--text-color) 41px, var(--body-color) 41px);
 }
 
 .section-title {
     display: inline-block;
     padding: 0 20px;
     padding-top: 100px;
-    background-color: var(--black);
-    color: var(--gold);
+    *background-color: var(--black);
+    background-color: var(--body-color);
+    color: var(--gold);    
+}
+
+.white-theme .section-title {
+    color: var(--text-color);
 }
 
 .skills-items {
@@ -229,10 +290,29 @@ li:last-child .nav-link {
     padding-top: 60px;
 }
 
+.white-theme .button-block .btn {
+    background-color: var(--gold); 
+    color: var(--text-color);
+}
+
+.white-theme .button-block .btn:hover {
+    color: var(--white);
+}
+
 .button-block .active {
     background-color: var(--gold);
     color: var(--black);
     cursor: default;
+}
+
+.white-theme .button-block .active {
+    background-color: var(--text-color); 
+    color: var(--gold);
+    border: 2px solid var(--gold);
+}
+
+.white-theme .button-block .active:hover { 
+    color: var(--gold);
 }
 
 .image-block {
@@ -256,7 +336,7 @@ li:last-child .nav-link {
     background-repeat: no-repeat;
 }
 
-.video-player button {
+.video-player__btn {
     position: absolute;
     border: 0;
     padding: 0;
@@ -265,9 +345,17 @@ li:last-child .nav-link {
     height: 130px;
 }
 
-.video-player svg {
+.video-player__icon {
     width: 130px;
     height: 130px;
+}
+
+.white-theme .video-player__icon {
+    fill: var(--white);
+}
+
+.white-theme .video-player__btn:hover .video-player__icon {
+    fill: var(--gold);
 }
 
 .price-block {
@@ -303,6 +391,10 @@ li:last-child .nav-link {
     padding: 20px;
 }
 
+.price-block .price {
+    color: var(--text-color);
+}
+
 .price-block button {
     margin-top: 40px;
 }
@@ -314,6 +406,10 @@ li:last-child .nav-link {
     margin: 0 -20px;
     margin-top: 100px;
     height: 700px;
+}
+
+.white-theme #contacts .container {
+    background-image: url('./assets/img/contacts-white.jpg');
 }
 
 .contact-block {
@@ -341,6 +437,12 @@ input, textarea {
     background-color: rgba(0,0,0,0.5);
 }
 
+.white-theme input, .white-theme textarea {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: var(--text-color);
+    *border: 2px solid #BDAE82;
+}
+
 input {
     height: 50px;
 }
@@ -361,8 +463,20 @@ input:focus-visible, textarea:focus-visible {
     font-size: 20px;
 }
 
+.white-theme ::placeholder {
+    color: var(--text-color);
+}
+
 .contact-block button {
     margin-top: 30px;
+}
+
+.white-theme .contact-block button {
+    background-color: var(--body-color);
+}
+
+.white-theme .contact-block button:hover {
+    color: var(--gold);
 }
 
 .footer .container {
@@ -391,19 +505,46 @@ input:focus-visible, textarea:focus-visible {
 }
 
 .lang-switcher {
-    line-height: 50px;
+    *line-height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 36px;
+    *padding-right: 35px;
 }
 
-.lang-switcher a {
-    padding-left: 10px;
+.lang-switcher button {
+    width: auto;
+    height: auto;
+    border: none;
+    padding: 0;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.lang-switcher button {
+    padding: 0 12px;
+}
+
+.lang-switcher button:first-child {
+    padding-left: 2px;
+}
+
+.lang-switcher button:last-child {
+    padding-right: 0;
 }
 
 .lang-switcher .active {
-    padding-right: 10px;
-    padding-left: 2px;
+    color: var(--gold);
+    cursor: default;
+}
+
+.lang-switcher button:not(.active):hover {
+    color: var(--gold);
+}
+
+.white-theme .header .active {
+    color: var(--white);
 }
 
 .menu-button {
@@ -423,8 +564,13 @@ input:focus-visible, textarea:focus-visible {
     width: 50px;
     height: 3px;
     margin: 5px auto;
-    background-color: #ecf0f1;
+    *background-color: #ecf0f1;
+    background-color: var(--text-color);
     transition: var(--trans);
+}
+
+.white-theme .menu-button .line {
+    *background-color: var(--text-color);
 }
 
 .menu-button.active {
@@ -465,9 +611,6 @@ input:focus-visible, textarea:focus-visible {
 }
 
 @media (max-width: 1440px) {   
-    .lang-switcher .active {
-        padding: 0 10px;
-    }
 
     .skills-items {
         justify-content: center;
@@ -483,6 +626,7 @@ input:focus-visible, textarea:focus-visible {
     .skill-item p {
         padding-top: 20px;
     }
+
     .video-player {
         margin: 0 -20px;       
         margin-top: 50px;
@@ -512,22 +656,29 @@ input:focus-visible, textarea:focus-visible {
         position: fixed;
         right: 0;
         margin: 0;
-        padding-top: 127px;
-        padding-left: 102px;    
+        padding-top: 123px;
+        padding-left: 96px;    
         max-width: 620px;
         width: 81%;
         opacity: 0;
+        z-index: -1;
         *height: 133vw; 
         *height: 1024px; 
         height: 100%; 
-        font-size: 35px;
-        z-index: -1;
-        background-color: var(--black);
+        *font-size: 35px;
+        font-size: 40px;
+        line-height: 72px;
+        font-family: Merriweather;     
+        background-color: var(--black);     
         transition: var(--trans);
     }
 
-    .nav-item{
-        padding: 9px;
+    .white-theme .nav-list {
+        background-color: var(--body-color);
+    }
+
+    .nav-item {
+        padding: 12px;
     }
 
     .nav-list.open {      
@@ -535,9 +686,26 @@ input:focus-visible, textarea:focus-visible {
         z-index: 2;
     }
 
+    .nav-link {
+        color: var(--gold);
+    }
+
+    .nav-link:hover {
+        *color: var(--white); 
+        letter-spacing: 5px; 
+    }
+
+    .white-theme .nav-link {
+        color: var(--text-color);
+    }
+
     .menu-button {
         display: flex;
         z-index: 2;
+    }
+
+    .white-theme .menu-button svg{
+        fill: var(--text-color);
     }
 
     .header .container {
@@ -546,12 +714,21 @@ input:focus-visible, textarea:focus-visible {
         *background-size: auto 620px;
     }
 
-     .lang-switcher {
-        padding: 0 54px;
+    .white-theme .header .container, .white-theme #hero .container {
+        background-image: url('./assets/img/header-bg-white2.jpg');
+    }
+    
+    .theme-switcher {
+        padding-right: 85px;
     }
 
-    .lang-switcher a {
-        padding: 0 21px;
+    .lang-switcher {
+        padding: 0 10px;
+    }
+
+    .lang-switcher button:not(.active) {
+        padding-right: 19px;
+        padding-left: 12px;
     }
 
     #hero .container {
@@ -582,10 +759,6 @@ input:focus-visible, textarea:focus-visible {
 
     .text-block .button-gold {
         margin-top: 60px;
-    }
-
-    .wrapper {
-        width: 60%;
     }
 
     .section-title {
@@ -629,6 +802,10 @@ input:focus-visible, textarea:focus-visible {
         height: 600px;
     }
 
+    .white-theme #contacts .container {
+        background-image: url(./assets/img/contacts-white2.jpg);
+    }
+
     .contact-block {
         padding-top: 50px;
         margin: 0 auto;
@@ -669,17 +846,20 @@ input:focus-visible, textarea:focus-visible {
         width: 100%; 
         padding-left: 60px;
         overflow: hidden; 
-        *height: 680px;
     }
     
-    .lang-switcher {
-        *padding-right: 100px;
-        padding-left: 0;
+    .lang-switcher {        
+        padding: 0;
+    }
+
+    .theme-switcher {
+        padding-right: 70px;
     }
     
     .menu-button {
         right: 20px;
     }
+
     .text-block {
         width: auto;
         padding-left: 20px;

@@ -26,18 +26,23 @@
             </div>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-                    <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                    <li class="nav-item"><a href="#video" class="nav-link">Video</a></li>
-                    <li class="nav-item"><a href="#price" class="nav-link">Price</a></li>
-                    <li class="nav-item"><a href="#contacts" class="nav-link">Contacts</a></li>
+                    <li class="nav-item"><a href="#skills" class="nav-link" data-lang="skills">Skills</a></li>
+                    <li class="nav-item"><a href="#portfolio" class="nav-link" data-lang="portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a href="#video" class="nav-link" data-lang="video">Video</a></li>
+                    <li class="nav-item"><a href="#price" class="nav-link" data-lang="price">Price</a></li>
+                    <li class="nav-item"><a href="#contacts" class="nav-link" data-lang="contacts">Contacts</a></li>
                 </ul>
             </nav>
             <div class="lang-switcher">
-                <span class="active">en</span>
+                <button class="btn active">EN</button>
                 <span>/</span>
-                <a href="#">ru</a>
+                <button class="btn">RU</button>
             </div>
+            <button class="theme-switcher">
+                <svg>
+                    <use xlink:href="assets/svg/sprite.svg#sun"></use>
+                </svg>
+            </button>
             <div id="menu-button" class="menu-button">
                 <span class="line"></span>
                 <span class="line"></span>
@@ -50,46 +55,46 @@
             <section id="hero" class="section">
                 <div class="container">
                     <div class="text-block">
-                        <h1>Alexa Rise</h1>
-                        <p>Save sin&shy;cere emo&shy;tions, ro&shy;man&shy;tic feel&shy;ings and hap&shy;py mo&shy;ments
+                        <h1 data-lang="hero-title">Alexa Rise</h1>
+                        <p data-lang="hero-text">Save sin&shy;cere emo&shy;tions, ro&shy;man&shy;tic feel&shy;ings and hap&shy;py mo&shy;ments
                             of life to&shy;gether with pro&shy;fes&shy;sion&shy;al pho&shy;tog&shy;ra&shy;pher Alexa
                             Rise</p>
-                        <button class="button-gold">Hire me</button>
+                        <button class="button-gold" data-lang="hire">Hire me</button>
                     </div>
                 </div>
             </section>
             <section class="section" id="skills">
                 <div class="wrapper">
-                    <h2 class="section-title">Skills</h2>
+                    <h2 class="section-title" data-lang="skills">Skills</h2>
                 </div>
                 <div class="skills-items">
                     <div class="skill-item">
-                        <h4>Digital photography</h4>
-                        <p>High-quality photos in the studio and on the nature</p>
+                        <h4 data-lang="skill-title-1">Digital photography</h4>
+                        <p data-lang="skill-text-1">High-quality photos in the studio and on the nature</p>
                     </div>
                     <div class="skill-item">
-                        <h4>Video shooting</h4>
-                        <p>Capture your moments so that they always stay with you</p>
+                        <h4 data-lang="skill-title-2">Video shooting</h4>
+                        <p data-lang="skill-text-2">Capture your moments so that they always stay with you</p>
                     </div>
                     <div class="skill-item">
-                        <h4>Retouch</h4>
-                        <p>I strive to make photography surpass reality</p>
+                        <h4 data-lang="skill-title-3">Retouch</h4>
+                        <p data-lang="skill-text-3">I strive to make photography surpass reality</p>
                     </div>
                     <div class="skill-item">
-                        <h4>Audio</h4>
-                        <p>Professional sounds recording for video, advertising, portfolio</p>
+                        <h4 data-lang="skill-title-4">Audio</h4>
+                        <p data-lang="skill-text-4">Professional sounds recording for video, advertising, portfolio</p>
                     </div>
                 </div>
             </section>
             <section class="section" id="portfolio">
                 <div class="wrapper">
-                    <h2 class="section-title">Portfolio</h2>
+                    <h2 class="section-title" data-lang="portfolio">Portfolio</h2>
                 </div>
                 <div class="button-block">
-                    <button class="button-black btn" data-season="winter">Winter</button>
-                    <button class="button-black btn" data-season="spring">Spring</button>
-                    <button class="button-black btn" data-season="summer">Summer</button>
-                    <button class="button-black btn active" data-season="autumn">Autumn</button>
+                    <button class="button-black btn" data-season="winter" data-lang="winter">Winter</button>
+                    <button class="button-black btn" data-season="spring" data-lang="spring">Spring</button>
+                    <button class="button-black btn" data-season="summer" data-lang="summer">Summer</button>
+                    <button class="button-black btn active" data-season="autumn" data-lang="autumn">Autumn</button>
                 </div>
                 <div class="image-block">
                     <div><img class="portfolio-image" src="assets/img/portfolio-img1.jpg" alt="photo"></div>
@@ -102,11 +107,11 @@
             </section>
             <section class="section" id="video">
                 <div class="wrapper">
-                    <h2 class="section-title">Video</h2>
+                    <h2 class="section-title" data-lang="video">Video</h2>
                 </div>
                 <div class="video-player">
-                    <button>
-                        <svg>
+                    <button class="video-player__btn">
+                        <svg class="video-player__icon">
                             <use xlink:href="assets/svg/sprite.svg#play_hover"></use>
                         </svg>
                     </button>
@@ -114,49 +119,49 @@
             </section>
             <section class="section" id="price">
                 <div class="wrapper">
-                    <h2 class="section-title">Price</h2>
+                    <h2 class="section-title" data-lang="price">Price</h2>
                 </div>
                 <div class="price-block">
                     <div>
-                        <h3>Standart</h3>
+                        <h3>Standard</h3>
                         <span class="price">500 $</span>
-                        <span>One location</span>
-                        <span>120 photos in color</span>
-                        <span>12 photos in retouch</span>
-                        <span>Readiness 2-3 weeks</span>
-                        <span>Make up, visage</span>
-                        <button class="button-gold">Order shooting</button>
+                        <span data-lang="price-description-1-span-1">One location</span>
+                        <span data-lang="price-description-1-span-2">120 photos in color</span>
+                        <span data-lang="price-description-1-span-3">12 photos in retouch</span>
+                        <span data-lang="price-description-1-span-4">Readiness 2-3 weeks</span>
+                        <span data-lang="price-description-1-span-5">Make up, visage</span>
+                        <button class="button-gold" data-lang="order">Order shooting</button>
                     </div>
                     <div>
                         <h3>Premium</h3>
                         <span class="price">700 $</span>
-                        <span>One or two locations</span>
-                        <span>200 photos in color</span>
-                        <span>20 photos in retouch</span>
-                        <span>Readiness 1-2 weeks</span>
-                        <span>Make up, visage</span>
-                        <button class="button-gold">Order shooting</button>
+                        <span data-lang="price-description-2-span-1">One or two locations</span>
+                        <span data-lang="price-description-2-span-2">200 photos in color</span>
+                        <span data-lang="price-description-2-span-3">20 photos in retouch</span>
+                        <span data-lang="price-description-2-span-4">Readiness 1-2 weeks</span>
+                        <span data-lang="price-description-2-span-5">Make up, visage</span>
+                        <button class="button-gold" data-lang="order">Order shooting</button>
                     </div>
                     <div>
                         <h3>Gold</h3>
                         <span class="price">1000 $</span>
-                        <span>Three locations or more</span>
-                        <span>300 photos in color</span>
-                        <span>50 photos in retouch</span>
-                        <span>Readiness 1 week</span>
-                        <span>Make up, visage, hairstyle</span>
-                        <button class="button-gold">Order shooting</button>
+                        <span data-lang="price-description-3-span-1">Three locations or more</span>
+                        <span data-lang="price-description-3-span-2">300 photos in color</span>
+                        <span data-lang="price-description-3-span-3">50 photos in retouch</span>
+                        <span data-lang="price-description-3-span-4">Readiness 1 week</span>
+                        <span data-lang="price-description-3-span-5">Make up, visage, hairstyle</span>
+                        <button class="button-gold" data-lang="order">Order shooting</button>
                     </div>
                 </div>
             </section>
             <section class="section" id="contacts">
                 <div class="container">
                     <div class="contact-block">
-                        <h2 class="section-title">Contact me</h2>
-                        <input type="email" placeholder="E-mail">
-                        <input type="tel" placeholder="Phone">
-                        <textarea cols="30" rows="10" placeholder="Message"></textarea>
-                        <button class="button-gold">Send message</button>
+                        <h2 class="section-title" data-lang="contact-me">Contact me</h2>
+                        <input type="email" data-lang="e-mail" placeholder="E-mail">
+                        <input type="tel" data-lang="phone" placeholder="Phone">
+                        <textarea cols="30" rows="10"  data-lang="message" placeholder="Message"></textarea>
+                        <button class="button-gold" data-lang="send-message">Send message</button>
                     </div>
                 </div>
             </section>
@@ -203,7 +208,8 @@
         </div>
     </footer>
     <div class="overlay" aria-hidden="true"></div>
-    <script src="index.js"></script>
+    <!-- <script src="index.js"></script> -->
+    <script type="module" src="index.js"></script>
 </body>
 
 </html>

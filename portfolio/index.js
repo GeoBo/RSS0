@@ -1,9 +1,92 @@
-window.addEventListener("load", function () {
 
+import i18Obj from './assets/js/translate.js';
+
+
+window.addEventListener("load", function () {
     addMenuEvent ();
     addGalleryEvent ();
     preloadImages ();
+    addLangEvent ();
+    addThemeEvent ();
 });
+
+function addThemeEvent (){
+    const button = document.querySelector (".theme-switcher");
+    const use = button.querySelector ("use");
+    //const elems = ['.header', '#hero', '.section-title'];
+    const elems = ['body'];
+
+    const toggleTheme = () => {
+        if (button.classList.contains ("white-theme")) {
+            use.setAttribute ("xlink:href","assets/svg/sprite.svg#sun")
+            button.classList.remove ("white-theme");
+
+            document.documentElement.style.setProperty('--body-color', '#000');
+            document.documentElement.style.setProperty('--text-color', '#FFF');
+            
+            elems.forEach (elem => {
+                const el = document.querySelectorAll (elem);
+                el.forEach (e => {
+                    e.classList.remove ("white-theme");
+                })  
+            });         
+        }
+        else {
+            use.setAttribute ("xlink:href","assets/svg/sprite.svg#moon");
+            button.classList.add ("white-theme");
+
+            document.documentElement.style.setProperty('--body-color', '#FFF');
+            //document.documentElement.style.setProperty('--text-color', '#000');
+            document.documentElement.style.setProperty('--text-color', '#1C1C1C');
+
+            elems.forEach (elem => {
+                const el = document.querySelectorAll (elem);
+                el.forEach (e => {
+                    e.classList.add ("white-theme");
+                })                 
+            });  
+        }
+    }
+
+    button.addEventListener("click", toggleTheme);
+}
+
+function convertHtmlEntity (str){
+    var div = document.createElement ('div');
+    div.innerHTML = str;
+    return div.textContent;
+}
+
+function addLangEvent () {
+    const langSwitcher = document.querySelector(".lang-switcher");
+    const btns = langSwitcher.querySelectorAll('.btn');
+    const textObjs = document.querySelectorAll('[data-lang]');
+
+    
+    const changeLang = (event) => {
+
+        let activeBtn = event.target;
+        let aBtnClass = activeBtn.classList;
+        let lang = activeBtn.textContent.toLowerCase();
+        
+        if (aBtnClass.contains("btn") && !aBtnClass.contains("active")) {
+            
+            btns.forEach (button => {
+                button.classList.remove("active");
+            });
+
+            aBtnClass.add("active");
+            
+            textObjs.forEach (obj => {
+                let text = convertHtmlEntity (i18Obj [lang][obj.dataset.lang]);
+                if (obj.placeholder) obj.placeholder = text;
+                else obj.textContent = text;                
+            });
+        }
+    }
+
+    langSwitcher.addEventListener("click", changeLang);
+}
 
 function preloadImages () {
     const seasons = ['winter', 'spring', 'summer', 'autumn'];
