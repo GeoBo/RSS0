@@ -58,6 +58,10 @@ a {
     transition: var(--trans);
 }
 
+img {
+    width: 100%;
+}
+
 svg {
     *fill: var(--white);
     fill: var(--text-color);
@@ -111,20 +115,10 @@ a:hover svg, button:hover svg {
     background-position: -1px 0;
 }
 
-/* .header.white-theme .container {
-    background: url('./assets/img/header-bg-white.jpg'); 
-    background-position: -1px 0;
-} */
-
 .white-theme #hero .container {
     background: url('./assets/img/header-bg-white.jpg');
     background-position: -1px -90px;
 }
-
-/* #hero.white-theme .container {
-    background: url('./assets/img/header-bg-white.jpg');
-    background-position: -1px -90px;
-} */
 
 .text-block {
     padding-top: 160px;
@@ -610,6 +604,14 @@ input:focus-visible, textarea:focus-visible {
     visibility: hidden;  
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
+.no-scroll .nav-list {
+    overflow-y: scroll;
+}
+
 @media (max-width: 1440px) {   
 
     .skills-items {
@@ -642,6 +644,12 @@ input:focus-visible, textarea:focus-visible {
         flex-basis: 420px;
     }
 }
+
+@media (max-width: 1000px) {   
+
+    .nav-link {
+        padding: 0 10px;
+    }
 
 @media (max-width: 769px) {
     .header .container {
@@ -691,7 +699,6 @@ input:focus-visible, textarea:focus-visible {
     }
 
     .nav-link:hover {
-        *color: var(--white); 
         letter-spacing: 5px; 
     }
 
@@ -723,12 +730,21 @@ input:focus-visible, textarea:focus-visible {
     }
 
     .lang-switcher {
-        padding: 0 10px;
+        padding: 0 20px;
+        *padding: 0 22px;
     }
 
     .lang-switcher button:not(.active) {
-        padding-right: 19px;
+        *padding-right: 19px;
         padding-left: 12px;
+    }
+
+    .lang-switcher button:first-child {
+        padding-left: 0;
+    }
+
+    .lang-switcher button:last-child {
+        padding-right: 10px;
     }
 
     #hero .container {
@@ -838,6 +854,7 @@ input:focus-visible, textarea:focus-visible {
 }
 
 @media (max-width: 500px) {
+
     .header .container {
         padding: 0 20px;
     }
@@ -849,7 +866,11 @@ input:focus-visible, textarea:focus-visible {
     }
     
     .lang-switcher {        
-        padding: 0;
+        padding: 10px;
+    }
+
+    .lang-switcher button:last-child {
+        padding-right: 0;
     }
 
     .theme-switcher {
@@ -877,6 +898,11 @@ input:focus-visible, textarea:focus-visible {
     .button-block {
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .image-block {
+        margin: 0 -20px;
+        gap : 0;
     }
     
     .price-block div{

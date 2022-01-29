@@ -1,6 +1,54 @@
 
 import i18Obj from './assets/js/translate.js';
 
+window.addEventListener ("DOMContentLoaded", function () {
+    
+    const getTranslate = (lang) => {
+        const langSwitcher = document.querySelector (".lang-switcher");
+        const btns = langSwitcher.querySelectorAll ('.btn');
+        const textObjs = document.querySelectorAll ('[data-lang]');
+
+        btns.forEach (button => {
+            if (button.textContent == lang) button.classList.add ("active");
+            else button.classList.remove ("active");
+        });
+
+        textObjs.forEach (obj => {
+            const text = convertHtmlEntity (i18Obj [lang.toLowerCase()][obj.dataset.lang]);
+            if (obj.placeholder) obj.placeholder = text;
+            else obj.textContent = text;                
+        });
+    }
+
+    function getWhiteTheme () {
+        const button = document.querySelector (".theme-switcher");
+        const use = button.querySelector ("use");
+        const elems = ['body'];
+    
+        use.setAttribute ("xlink:href","assets/svg/sprite.svg#moon");
+        button.classList.add ("white-theme");
+    
+        document.documentElement.style.setProperty('--body-color', '#FFF');
+        document.documentElement.style.setProperty('--text-color', '#1C1C1C');
+    
+        elems.forEach (elem => {
+            const el = document.querySelectorAll (elem);
+            el.forEach (e => {
+                e.classList.add ("white-theme");
+            })                 
+        });  
+    }
+
+    if (localStorage.getItem ('lang')) {
+        const lang = localStorage.getItem ('lang');
+        getTranslate (lang);
+    }
+
+    if (localStorage.getItem ('theme')) {
+        const theme = localStorage.getItem ('theme');
+        if (theme == "white") getWhiteTheme (theme);
+    }
+});
 
 window.addEventListener("load", function () {
     addMenuEvent ();
@@ -8,7 +56,24 @@ window.addEventListener("load", function () {
     preloadImages ();
     addLangEvent ();
     addThemeEvent ();
+    setLocalStorageEvent ();
 });
+
+function setLocalStorageEvent () {
+    const setLocalStorage = () => {
+        const langSwitcher = document.querySelector (".lang-switcher");
+        const lang = langSwitcher.querySelector (".active").textContent;
+        localStorage.setItem('lang', lang);
+
+        const themeSwitcher = document.querySelector (".theme-switcher");
+        let theme;
+        if (themeSwitcher.classList.contains ("white-theme")) theme = "white";
+        else theme = "dark";
+        localStorage.setItem ('theme', theme);
+    };
+
+    window.addEventListener ('beforeunload', setLocalStorage);
+}
 
 function addThemeEvent (){
     const button = document.querySelector (".theme-switcher");
@@ -18,11 +83,11 @@ function addThemeEvent (){
 
     const toggleTheme = () => {
         if (button.classList.contains ("white-theme")) {
-            use.setAttribute ("xlink:href","assets/svg/sprite.svg#sun")
+            use.setAttribute ("xlink:href","assets/svg/sprite.svg#sun");
             button.classList.remove ("white-theme");
 
-            document.documentElement.style.setProperty('--body-color', '#000');
-            document.documentElement.style.setProperty('--text-color', '#FFF');
+            document.documentElement.style.setProperty ('--body-color', '#000');
+            document.documentElement.style.setProperty ('--text-color', '#FFF');
             
             elems.forEach (elem => {
                 const el = document.querySelectorAll (elem);
@@ -35,9 +100,8 @@ function addThemeEvent (){
             use.setAttribute ("xlink:href","assets/svg/sprite.svg#moon");
             button.classList.add ("white-theme");
 
-            document.documentElement.style.setProperty('--body-color', '#FFF');
-            //document.documentElement.style.setProperty('--text-color', '#000');
-            document.documentElement.style.setProperty('--text-color', '#1C1C1C');
+            document.documentElement.style.setProperty ('--body-color', '#FFF');
+            document.documentElement.style.setProperty ('--text-color', '#1C1C1C');
 
             elems.forEach (elem => {
                 const el = document.querySelectorAll (elem);
@@ -61,8 +125,7 @@ function addLangEvent () {
     const langSwitcher = document.querySelector(".lang-switcher");
     const btns = langSwitcher.querySelectorAll('.btn');
     const textObjs = document.querySelectorAll('[data-lang]');
-
-    
+  
     const changeLang = (event) => {
 
         let activeBtn = event.target;
@@ -104,7 +167,6 @@ function addGalleryEvent () {
     const btn = buttonBlock.querySelectorAll(".btn");
     const portfolioImages = document.querySelectorAll(".portfolio-image");
      
-    // console.log(btn); 
     const toggleGallery = (event) => {
         let activeBtn = event.target;
         if (activeBtn.classList.contains("btn")) {
@@ -122,18 +184,20 @@ function addGalleryEvent () {
 }
 
 function addMenuEvent () {
-    const navList = document.querySelector(".nav-list");
-    const overlay = document.querySelector(".overlay");
-    const button = document.getElementById("menu-button");
-
+    const body = document.querySelector ("body");
+    const button = document.getElementById ("menu-button");
+    const navList = document.querySelector (".nav-list");
+    const overlay = document.querySelector (".overlay");
+    
     const toggleMenu = () => {
-        if (navList.classList.contains("open")) {
-            overlay.setAttribute("aria-hidden", "true");
+        if (navList.classList.contains ("open")) {
+            overlay.setAttribute ("aria-hidden", "true");
         } 
-        else overlay.setAttribute("aria-hidden", "");
+        else overlay.setAttribute ("aria-hidden", "");
 
-        button.classList.toggle("active");
-        navList.classList.toggle("open");
+        button.classList.toggle ("active");
+        navList.classList.toggle ("open");
+        body.classList.toggle ("no-scroll");
     };
 
     const closeMenuLink = (event) => {
@@ -143,14 +207,15 @@ function addMenuEvent () {
     };
 
     const closeMenu = () => {
-        button.classList.remove("active");
-        navList.classList.remove("open");
-        overlay.setAttribute("aria-hidden", "true");
+        body.classList.remove ("no-scroll");
+        button.classList.remove ("active");
+        navList.classList.remove ("open");
+        overlay.setAttribute ("aria-hidden", "true");
     };
 
-    button.addEventListener("click", toggleMenu);
-    navList.addEventListener("click", closeMenuLink);
-    overlay.addEventListener("click", closeMenu);
+    button.addEventListener ("click", toggleMenu);
+    navList.addEventListener ("click", closeMenuLink);
+    overlay.addEventListener ("click", closeMenu);
 
     //window.addEventListener("resize", closeMenu);
 }
