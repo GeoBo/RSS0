@@ -2,13 +2,9 @@
     --black: #000;
     --white: #FFF;
     --gold: #bdae82;
-    --trans: 0.3s ease-out;
-}
-
-:root {
     --body-color: #000;
     --text-color: #fff;
-    --hover-color: #bdae82;
+    --trans: 0.3s ease-out;
 }
 
 html {
@@ -23,9 +19,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     margin: 0;
-    *background-color: var(--black);
     background-color: var(--body-color);
-    *color: var(--white);
     color: var(--text-color);
 }
 
@@ -52,7 +46,6 @@ ul {
 }
 
 a {
-    *color: var(--white);
     color: var(--text-color);
     text-decoration: none;
     transition: var(--trans);
@@ -63,7 +56,6 @@ img {
 }
 
 svg {
-    *fill: var(--white);
     fill: var(--text-color);
     transition: var(--trans);
 }
@@ -104,7 +96,6 @@ a:hover svg, button:hover svg {
 #hero .container {
     background-image: url('./assets/img/header-bg.jpg');
     background-position: center -90px;
-    *background-position: -1px -90px;
     background-repeat: no-repeat;
     margin: 0 -20px;
     height: 820px;
@@ -138,7 +129,7 @@ button {
     color: inherit;
     background-color: inherit;
     cursor: pointer;
-    width: 220px;
+    width: 220px; 
     height: 55px;
     user-select: none;
     transition: var(--trans);
@@ -149,10 +140,23 @@ button {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.text-block .btn-border {
+    margin: 22px 0;
+}
+
+.btn-border {
+    display: inline-block;
+}
+
+.btn-border .button-gold,
+.btn-border .button-black {
+	margin: 3px; 
+}
+
 .button-gold {
     background-color: var(--gold);
     color: var(--black);
-    border: 0;
+    border: 0;  
 }
 
 .button-gold:hover {
@@ -160,7 +164,7 @@ button {
 }
 
 .white-theme #hero button:hover {
-    color: var(--gold);
+    color: var(--gold);   
 }
 
 .button-black {
@@ -169,11 +173,7 @@ button {
 }
 
 .button-black:hover {
-    color: var(--white);
-}
-
-.text-block .button-gold {
-    margin-top: 25px;
+    *color: var(--white);
 }
 
 .nav {
@@ -224,7 +224,6 @@ li:last-child .nav-link {
     display: inline-block;
     padding: 0 20px;
     padding-top: 100px;
-    *background-color: var(--black);
     background-color: var(--body-color);
     color: var(--gold);    
 }
@@ -281,7 +280,7 @@ li:last-child .nav-link {
     align-items: center;
     gap: 5px;
     width: auto;
-    padding-top: 60px;
+    padding: 60px;
 }
 
 .white-theme .button-block .btn {
@@ -313,7 +312,6 @@ li:last-child .nav-link {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 60px;
     gap: 25px;
     line-height: 0;
 }
@@ -361,7 +359,7 @@ li:last-child .nav-link {
     gap: 25px;
 }
 
-.price-block div {
+.price-block__item {
     flex-basis: 450px;
     box-sizing: border-box;
     border: 3px solid var(--gold);
@@ -385,12 +383,12 @@ li:last-child .nav-link {
     padding: 20px;
 }
 
-.price-block .price {
-    color: var(--text-color);
+.white-theme .price-block .price {
+    color: var(--black);
 }
 
-.price-block button {
-    margin-top: 40px;
+.price-block .btn-border {
+    margin-top: 34px; 
 }
 
 #contacts .container {
@@ -409,6 +407,7 @@ li:last-child .nav-link {
 .contact-block {
     width: 450px;
     padding-top: 60px;
+    padding-left: 60px;
     margin-left: auto;
 }
 
@@ -434,7 +433,6 @@ input, textarea {
 .white-theme input, .white-theme textarea {
     background-color: rgba(255, 255, 255, 0.5);
     color: var(--text-color);
-    *border: 2px solid #BDAE82;
 }
 
 input {
@@ -461,8 +459,8 @@ input:focus-visible, textarea:focus-visible {
     color: var(--text-color);
 }
 
-.contact-block button {
-    margin-top: 30px;
+.contact-block .btn-border {
+    margin: 27px 0;
 }
 
 .white-theme .contact-block button {
@@ -499,12 +497,10 @@ input:focus-visible, textarea:focus-visible {
 }
 
 .lang-switcher {
-    *line-height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-right: 36px;
-    *padding-right: 35px;
 }
 
 .lang-switcher button {
@@ -558,13 +554,8 @@ input:focus-visible, textarea:focus-visible {
     width: 50px;
     height: 3px;
     margin: 5px auto;
-    *background-color: #ecf0f1;
     background-color: var(--text-color);
     transition: var(--trans);
-}
-
-.white-theme .menu-button .line {
-    *background-color: var(--text-color);
 }
 
 .menu-button.active {
@@ -613,7 +604,6 @@ input:focus-visible, textarea:focus-visible {
 }
 
 @media (max-width: 1440px) {   
-
     .skills-items {
         justify-content: center;
         gap: 45px;
@@ -640,16 +630,16 @@ input:focus-visible, textarea:focus-visible {
         gap: 46px;
     }
 
-    .price-block div {
+    .price-block__item {
         flex-basis: 420px;
     }
 }
 
 @media (max-width: 1000px) {   
-
     .nav-link {
         padding: 0 10px;
     }
+}
 
 @media (max-width: 769px) {
     .header .container {
@@ -660,23 +650,19 @@ input:focus-visible, textarea:focus-visible {
         box-sizing: border-box;
         flex-direction: column;
         align-items: start;
-        *position: absolute;
-        position: fixed;
+        position: absolute;
         right: 0;
         margin: 0;
         padding-top: 123px;
         padding-left: 96px;    
         max-width: 620px;
         width: 81%;
-        opacity: 0;
-        z-index: -1;
-        *height: 133vw; 
-        *height: 1024px; 
         height: 100%; 
-        *font-size: 35px;
+        opacity: 0;
+        z-index: -1;     
+        font-family: Merriweather;     
         font-size: 40px;
         line-height: 72px;
-        font-family: Merriweather;     
         background-color: var(--black);     
         transition: var(--trans);
     }
@@ -731,11 +717,9 @@ input:focus-visible, textarea:focus-visible {
 
     .lang-switcher {
         padding: 0 20px;
-        *padding: 0 22px;
     }
 
     .lang-switcher button:not(.active) {
-        *padding-right: 19px;
         padding-left: 12px;
     }
 
@@ -752,10 +736,6 @@ input:focus-visible, textarea:focus-visible {
         *background-position: -5px -120px;
         *background-size: auto 620px;
         height: 500px;
-
-        *background-position: -7px -120px;
-        *background-size: auto 76%;
-        *background-size: contain;
     }
 
     .text-block {
@@ -773,8 +753,8 @@ input:focus-visible, textarea:focus-visible {
         line-height: 24px;
     }
 
-    .text-block .button-gold {
-        margin-top: 60px;
+    .text-block .btn-border {
+        margin: 57px 0;
     }
 
     .section-title {
@@ -794,11 +774,10 @@ input:focus-visible, textarea:focus-visible {
     }
 
     .video-player {
-        height: 418px;
-        *background-position: 0px 6px;
-        *background-size: auto 409px;
-        *background-size: 106%;
         background-image: url("assets/video/video-player2.jpg");
+        *background-position: 0px 6px;
+        *background-size: auto 409px;    
+        height: 418px;
     }
 
     .video-player button {
@@ -824,6 +803,7 @@ input:focus-visible, textarea:focus-visible {
 
     .contact-block {
         padding-top: 50px;
+        padding-left: 0;
         margin: 0 auto;
         text-align: center;
     }
@@ -905,11 +885,24 @@ input:focus-visible, textarea:focus-visible {
         gap : 0;
     }
     
-    .price-block div{
+    .price-block__item {
         flex-basis: auto;
+        padding: 25px;
+        padding-top: 5px;
+        padding-bottom: 15px;
+    }
+
+    .price-block .price {
+        padding-top: 5px;
+        padding-bottom: 8px;
+    }
+
+    .price-block .btn-border {
+        margin-top: 25px;
     }
 
     .contact-block {
         width: auto;
     }
+    
 }

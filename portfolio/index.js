@@ -1,5 +1,6 @@
 
 import i18Obj from './assets/js/translate.js';
+import FluentRevealEffect  from "./assets/js/fluent-reveal-effect/index.js";
 
 window.addEventListener ("DOMContentLoaded", function () {
     
@@ -57,7 +58,77 @@ window.addEventListener("load", function () {
     addLangEvent ();
     addThemeEvent ();
     setLocalStorageEvent ();
+    addButtonEffect (); 
 });
+
+function addButtonEffect () {
+
+    const body = document.querySelector ("body");
+
+    if (body.classList.contains ("white-theme")){
+        FluentRevealEffect.applyEffect(".btn-effect-container", {
+            clickEffect: true,
+            lightColor: "rgba(255,255,255,1)",
+            gradientSize: 80,
+            isContainer: true,
+            children: {
+                borderSelector: ".btn-border",
+                elementSelector: ".button-gold",
+                lightColor: "rgba(212,174,30,0.2)", //for click effect
+                gradientSize: 0
+            }
+        })
+
+        FluentRevealEffect.applyEffect(".price-block.btn-effect-container", {
+            clickEffect: true,
+            lightColor: "rgba(255,255,255,1)",
+            gradientSize: 80,
+            isContainer: true,
+            children: {
+                borderSelector: ".btn-border",
+                elementSelector: ".button-gold",
+                lightColor: "rgba(255,255,255,0.4)",
+                gradientSize: 80
+            }
+        })
+
+        FluentRevealEffect.applyEffect (".toolbar", {
+            lightColor: "white",
+        });
+        
+        FluentRevealEffect.applyEffect (".toolbar .button-black", {
+            lightColor: "rgba(255,255,255,0.4)",
+            gradientSize: 150,
+            clickEffect: true
+        });
+    }
+    else {
+        FluentRevealEffect.applyEffect(".btn-effect-container", {
+            clickEffect: true,
+            lightColor: "rgba(255,255,255,0.6)",
+            gradientSize: 80,
+            isContainer: true,
+            children: {
+                borderSelector: ".btn-border",
+                elementSelector: ".button-gold",
+                lightColor: "rgba(255,255,255,0.3)",
+                gradientSize: 150
+            }
+        })
+
+        FluentRevealEffect.applyEffect(".toolbar", {
+            lightColor: "rgba(189,174,30,0.1)",
+            gradientSize: 500
+        });
+        
+        FluentRevealEffect.applyEffect(".toolbar .button-black", {
+            lightColor: "rgba(240,174,230,0.1)",
+            gradientSize: 150,
+            clickEffect: true
+        });
+    }
+}
+
 
 function setLocalStorageEvent () {
     const setLocalStorage = () => {
@@ -110,9 +181,10 @@ function addThemeEvent (){
                 })                 
             });  
         }
+        addButtonEffect ();
     }
 
-    button.addEventListener("click", toggleTheme);
+    button.addEventListener ("click", toggleTheme);
 }
 
 function convertHtmlEntity (str){
@@ -122,9 +194,9 @@ function convertHtmlEntity (str){
 }
 
 function addLangEvent () {
-    const langSwitcher = document.querySelector(".lang-switcher");
-    const btns = langSwitcher.querySelectorAll('.btn');
-    const textObjs = document.querySelectorAll('[data-lang]');
+    const langSwitcher = document.querySelector (".lang-switcher");
+    const btns = langSwitcher.querySelectorAll ('.btn');
+    const textObjs = document.querySelectorAll ('[data-lang]');
   
     const changeLang = (event) => {
 
@@ -151,7 +223,7 @@ function addLangEvent () {
     langSwitcher.addEventListener("click", changeLang);
 }
 
-function preloadImages () {
+function preloadImages () { //for cache
     const seasons = ['winter', 'spring', 'summer', 'autumn'];
 
     seasons.forEach (season => {
@@ -163,17 +235,17 @@ function preloadImages () {
 }
 
 function addGalleryEvent () {
-    const buttonBlock = document.querySelector(".button-block");
-    const btn = buttonBlock.querySelectorAll(".btn");
-    const portfolioImages = document.querySelectorAll(".portfolio-image");
+    const buttonBlock = document.querySelector (".button-block");
+    const btn = buttonBlock.querySelectorAll (".btn");
+    const portfolioImages = document.querySelectorAll (".portfolio-image");
      
     const toggleGallery = (event) => {
         let activeBtn = event.target;
-        if (activeBtn.classList.contains("btn")) {
+        if (activeBtn.classList.contains ("btn")) {
             btn.forEach (button => {
-                button.classList.remove("active");
+                button.classList.remove ("active");
             });
-            activeBtn.classList.add("active");
+            activeBtn.classList.add ("active");
             portfolioImages.forEach ((img, index) => 
                 img.src = `./assets/img/${activeBtn.dataset.season}/${index + 1}.jpg`
             );
