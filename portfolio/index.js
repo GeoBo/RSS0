@@ -13,9 +13,21 @@ window.addEventListener ("DOMContentLoaded", function () {
             if (button.textContent == lang) button.classList.add ("active");
             else button.classList.remove ("active");
         });
-
+        if (lang.toLowerCase() == "en") return false;
         textObjs.forEach (obj => {
             const text = convertHtmlEntity (i18Obj [lang.toLowerCase()][obj.dataset.lang]);
+            if (obj.classList.contains ("glitch")) {
+                obj.classList.add ("ru");
+
+                const svg = document.getElementById ("glitch");  
+                const glitchText= document.querySelector(".glitch-text")
+                glitchText.textContent = text;
+        
+                svg.setAttribute("viewBox", "0 0 66 30"); 
+                svg.setAttribute("x", "4"); 
+
+                return false;
+            }
             if (obj.placeholder) obj.placeholder = text;
             else obj.textContent = text;                
         });
@@ -204,8 +216,7 @@ function addLangEvent () {
         let aBtnClass = activeBtn.classList;
         let lang = activeBtn.textContent.toLowerCase();
         
-        if (aBtnClass.contains("btn") && !aBtnClass.contains("active")) {
-            
+        if (aBtnClass.contains("btn") && !aBtnClass.contains("active")) {         
             btns.forEach (button => {
                 button.classList.remove("active");
             });
@@ -214,6 +225,23 @@ function addLangEvent () {
             
             textObjs.forEach (obj => {
                 let text = convertHtmlEntity (i18Obj [lang][obj.dataset.lang]);
+                
+                if (obj.classList.contains ("glitch")) {
+                    const svg = document.getElementById ("glitch");
+                    const glitchText= document.querySelector(".glitch-text");
+                    glitchText.textContent = text;    
+                    if (lang == "ru") {
+                        obj.classList.add ("ru");
+                        svg.setAttribute("viewBox", "0 0 66 30"); 
+                        svg.setAttribute("x", "4"); 
+                    }
+                    else {
+                        obj.classList.remove ("ru");
+                        svg.setAttribute("viewBox", "0 0 56 30"); 
+                        svg.setAttribute("x", "0"); 
+                    }         
+                    return false;
+                }
                 if (obj.placeholder) obj.placeholder = text;
                 else obj.textContent = text;                
             });
@@ -260,7 +288,7 @@ function addMenuEvent () {
     const button = document.getElementById ("menu-button");
     const navList = document.querySelector (".nav-list");
     const overlay = document.querySelector (".overlay");
-    
+
     const toggleMenu = () => {
         if (navList.classList.contains ("open")) {
             overlay.setAttribute ("aria-hidden", "true");
