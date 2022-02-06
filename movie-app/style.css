@@ -1,0 +1,123 @@
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --text-color: #bbbbbb;
+    --trans: 0.3s ease-out;
+    
+/*  --primary-color: #22254b;
+    --secondary-color: #373b69; */
+
+    --primary-color: #1b1b1b;
+    --secondary-color: #333333;
+    --placeholder-color: #bbbbbb;
+}
+
+html {   
+     *font-family: 'Inter', sans-serif;
+     font-family: Merriweather, serif;
+     scroll-behavior: smooth;
+     font-size: 20px;
+     line-height: 2;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    width: 100%;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    *background-color: var(--primary-color);
+    *background-color: #1e1d2b;
+    color: var(--text-color);
+}
+
+.header__container,
+.main__container,
+.footer__container {
+    *max-width: 1440px;
+    *margin: 0 auto; 
+    overflow-x: hidden;
+    *padding: 0 2rem;
+}
+
+.header__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 90px;
+    background-color: var(--secondary-color);
+    padding: 0 2rem;
+    *padding: 0 10%;
+}
+
+.form {
+    width: 30%;
+}
+
+.form__search {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;   
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: transparent;
+    *color: #fff;
+    width: 100%;
+}
+
+.form__search::placeholder {
+    *color: #7378c5;
+    *color: #8b8fb9;
+    color: var(--placeholder-color);
+}
+
+.form__search:focus {
+    outline: none;
+    background-color: var(--primary-color);
+}
+
+.main__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    *justify-content: space-between;
+    *gap: 2rem;
+    *padding-top: 1rem;
+    *padding-bottom: 1rem; 
+    background-color: var(--primary-color);
+}
+
+.movie {
+    flex-basis: 300px;
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+    margin: 1rem;
+}
+
+.movie-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    *justify-content: space-between;
+    padding: 0.5rem 1rem 1rem;
+    letter-spacing: 0.5px;
+    height: 130px;
+    text-align: center;   
+    *height: 100%;
+}
+
+.movie-info h3 {
+    margin: 0;
+    padding: 0;
+}
