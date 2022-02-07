@@ -1,18 +1,13 @@
-
 * {
     box-sizing: border-box;
 }
 
 :root {
-    --text-color: #bbbbbb;
-    --trans: 0.3s ease-out;
-    
-/*  --primary-color: #22254b;
-    --secondary-color: #373b69; */
-
     --primary-color: #1b1b1b;
     --secondary-color: #333333;
+    --text-color: #bbbbbb;
     --placeholder-color: #bbbbbb;
+    --trans: 0.3s ease-out;
 }
 
 html {   
@@ -34,8 +29,7 @@ img {
     flex-direction: column;
     justify-content: space-between;
     margin: 0;
-    *background-color: var(--primary-color);
-    *background-color: #1e1d2b;
+    background-color: var(--primary-color);
     color: var(--text-color);
 }
 
@@ -44,7 +38,7 @@ img {
 .footer__container {
     *max-width: 1440px;
     *margin: 0 auto; 
-    overflow-x: hidden;
+    *overflow-x: hidden;
     *padding: 0 2rem;
 }
 
@@ -58,41 +52,80 @@ img {
     *padding: 0 10%;
 }
 
-.form {
+.search-form {
     width: 30%;
+    position: relative;
+    *display: flex;
+    *justify-content: center;
 }
 
-.form__search {
+.search-form__input {
     padding: 0.5rem 1rem;
     border: 2px solid var(--primary-color);
     border-radius: 50px;   
     font-family: inherit;
     font-size: 1rem;
     background-color: transparent;
-    *color: #fff;
+    color: var(--text-color);
     width: 100%;
 }
 
-.form__search::placeholder {
-    *color: #7378c5;
-    *color: #8b8fb9;
+.search-form__input::placeholder {
     color: var(--placeholder-color);
 }
 
-.form__search:focus {
+.search-form__input:focus::placeholder {
+    color: #575757
+}
+
+.search-form__input:focus {
     outline: none;
     background-color: var(--primary-color);
+}
+
+.search-form__close {
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    opacity: 1;
+    *padding: 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.search-form__close.hide {
+    opacity: 0;
+}
+
+.search-form__close:before, .search-form__close:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 17px;
+    height: 28px;
+    width: 4px;
+    background-color: var(--placeholder-color);
+    background-color: #65686b;
+}
+
+.search-form__close:before {
+    transform: rotate(45deg);
+}
+
+.search-form__close:after {
+    transform: rotate(-45deg);
 }
 
 .main__container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    *justify-content: space-between;
-    *gap: 2rem;
-    *padding-top: 1rem;
-    *padding-bottom: 1rem; 
     background-color: var(--primary-color);
+    *height: 100vw;
 }
 
 .movie {
@@ -105,19 +138,83 @@ img {
     margin: 1rem;
 }
 
-.movie-info {
+.movie__info {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    *justify-content: space-between;
-    padding: 0.5rem 1rem 1rem;
+    *padding: 0.5rem 1rem 1rem;
+    padding: 0.5rem;
+    padding-top: 0;
     letter-spacing: 0.5px;
-    height: 130px;
-    text-align: center;   
-    *height: 100%;
+    *height: 130px;
+    text-align: center;     
 }
 
-.movie-info h3 {
+.movie__info h3 {
     margin: 0;
     padding: 0;
+}
+
+.movie__rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    gap: 5px;
+}
+
+.movie__rating svg {
+    width: 25px;
+    height: 25px; 
+}
+
+.icon-storage {
+    z-index: -1;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-color: var(--secondary-color);
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+/* ul {
+    
+} */
+
+.footer svg {
+    width: 32px;
+    height: 32px;
+}
+
+.github-block, .social-link {
+    display: flex;
+    *justify-content: center;
+    *align-items: center;
+    gap: 20px;
+}
+
+.github-block {
+    padding-right: 15px;
+}
+
+.github-block span {
+    *line-height: 5px;
+    *vertical-align: middle;
+}
+
+.social-link li {
+    *line-height: 0;
 }
