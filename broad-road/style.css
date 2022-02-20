@@ -2,6 +2,8 @@
 :root {
     --text-color: #000;
     --background-color: #333;
+    --color-gold: #bdae82;
+    --color-white: white;
 }
 
 * {
@@ -12,7 +14,7 @@
 
 html {
     width: 100%;
-    height: 100%;
+    height: 100%;  
 }
 
 a {
@@ -20,8 +22,34 @@ a {
     text-decoration: none;
 }
 
+img {
+    width: 100%;
+    height: auto;
+}
+
 svg {
-    fill: var(--text-color);
+    *fill: var(--text-color);
+    fill: var(--color-gold);
+    *fill: var(--color-white);
+}
+
+button:focus{
+    outline: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.7em;
+}
+
+th, td{
+    padding: 0.5em 2em;
+}
+
+th:nth-child(1), th:nth-child(4),
+td:nth-child(1), td:nth-child(4){
+    *padding: 0.5em 0.5em;
 }
 
 .body {
@@ -31,83 +59,101 @@ svg {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    color: var(--text-color);
+    *color: var(--text-color);
+    color: var(--color-gold);
     background: var(--background-color);
+    font-size: 4vh;
 }
 
 .screen {
-    *width: 100%;
-    *height: 100%;
     margin: 0 auto;
-    position: relative
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
  
 .canvas {
     width: 100%;
-    height: 100%;
+    height: 100%; 
     background: #000;
 }
 
 .menu {
-    width: 100%;
-    height: 100%;
-    background: #000;
+    display: flex;  
+    justify-content: center;
     position: absolute;
     top: 0;
     left: 0;
-    color: white;
-    display: flex;  
-    justify-content: center;
+    width: 100%;
+    height: 100%;
     opacity: 1;
+    *background: #000;
+    background: #000 url('./assets/image/bg.jpg') no-repeat;
+    *background: url('./assets/image/bg.jpg');
+    *background-position: center center;
+    *background-position: center 0;
+    background-size: contain;
     transition: ease-out 1s;
 }
 
 .menu__container {
-    display: flex; 
+    display: flex;
     flex-direction: column;
     justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 1em;
+}
+
+.records .menu__content {
+    *color: #d1c0a4;
+    *color: #d0bea0;
+    color: #dcd5c7;
+}
+
+.last-record {
+    color: #d0bea0;
+    color: #72c672;
+    *font-weight: bold;
 }
 
 .menu__title {
-    padding: 10px 0;
-    margin: 0 auto;
+    text-align: center;
 }
 
-.menu__content {
+.menu__title h1{
+    padding-bottom: 0.2em;
+}
+
+.records .menu__title span {
+    display: none;
+}
+
+.menu__content {    
+    display: flex;  
+    *justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
     margin: 0 auto;
-    text-align: center
+    text-align: center;
 }
 
 .menu__content > div {
-    margin: 10px 0;
+    flex-basis: 6em;
 }
 
 .button {
-    padding: 0.8em 6em;
-     margin-top: 10px;
-}
-
-.key__left, .key__right, .key__up, .key__down {
-    display: block;
-    width: 55px;
-    height: 55px;
-    background-image: url('https://i.ibb.co/8chvkk2/pngwing-com.png') no-repeat;
-    background-size: 100%;
-}
-
-.key__left{
-    background-position: -10px -10px; 
-}
-
-.hide {
-    opacity: 0;
-    pointer-events: none;
+    font-size: inherit;
+    background-color: var(--color-gold);
+    padding: 0.5em 4em;
+    border-radius: 6px;
+    cursor: pointer; 
+    z-index: 1;
 }
 
 .footer {
-    display: none;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -116,12 +162,9 @@ svg {
 .footer__container {
     display: flex;
     justify-content: space-between;
-    *justify-content: space-around;
-    align-items: center;  
-    padding: 0 30px;
-    *padding-bottom: 0; 
+    align-items: center;
+    padding: 0.5em 2em;
 }
-
 
 .github-block {
     display: flex;
@@ -131,11 +174,103 @@ svg {
 }
 
 .icon-github{
-    width: 26px;
-    height: 26px;
+    width: 1.2em;
+    height: 1.2em;
 } 
 
-.icon-rss{
-    width: 70px;
-    height: 52px;
+.github-block span{
+    font-size: 0.8em;
+}
+
+.icon-rss {
+    width: 2.5em;
 } 
+
+.button-pause {
+    position: absolute;
+    background: inherit;
+    font-size: inherit;
+    border: none;
+    width: 3.5em;
+    height: 3.5em;
+    padding: 0.8em;
+    transition: ease-out 0.1s;
+    opacity: 1;
+}
+
+.button-pause.hide {
+    transition: ease-out 0.4s; 
+    *transition: none; 
+}
+
+.button-pause__icon {  
+    display: block;
+    position: relative;
+    background-image: url('./assets/svg/pause.svg');
+    background-position: center top; 
+    background-size: contain;
+    background-repeat: no-repeat;  
+    width: 100%;
+    height: 100%;
+    *cursor: pointer;    
+}
+
+.hide .button-pause__icon { 
+    background-image: url('./assets/svg/play.svg');   
+    left: 2px;   
+}
+
+.button-mute {
+    position: absolute;
+    bottom: 0;
+    *left: 0;
+    right: 0;
+    background: inherit;
+    font-size: inherit;
+    border: none;
+    width: 3em;
+    height: 3em;
+    padding: 0.9em;
+    opacity: 1;
+}
+
+.button-mute__icon {  
+    display: block;
+    *position: relative;
+    background-image: url('./assets/svg/volume.svg');
+    *background-position: center top; 
+    background-size: contain;
+    background-repeat: no-repeat;  
+    width: 100%;
+    height: 100%;
+    cursor: pointer;    
+}
+
+.muted .button-mute__icon{
+    background-image: url('./assets/svg/mute.svg');
+}
+
+.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (max-height: 400px) {
+  .body {
+      font-size: 18px;
+  }
+  .button{
+      padding: 0.3em 3em;
+  }
+  .footer__container {
+      padding: 0 20px;
+  }
+  .icon-rss {
+      width: 50px;
+      height: 52px;
+  }
+  th, td{
+      padding: 3px 15px;
+  }
+}
+

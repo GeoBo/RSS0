@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Broad road</title>
+    <link type="image/x-icon" href="./assets/image/favicon.ico" rel="shortcut icon">
     <link rel="stylesheet" href="style.css">
   </head>
   <body class="body">
@@ -13,43 +14,35 @@
         <canvas width="0" height="0" class="canvas">Ваш браузер не поддерживает JavaScript и HTML5!</canvas>
         <section class="menu">
           <div class="menu__container">
-            <h1 class="menu__title">Broad Road</h1>
-            <div class="menu__content">
-              <div>
-                <span class="key__left"></span><span>- Left</span> 
-              </div>
-              <div>
-                <span class="key__right"></span><span>- Right</span>     
-              </div>
-              <div>
-                <span class="key__up"></span><span>- Up</span>     
-              </div>
-              <div>
-                <span class="key__down"></span><span>- Down</span>     
-              </div>
-              <div>
-                <span>Enter</span><span>- play/pause</span>   
-              </div>      
+            <div class="menu__title">
+              <h1 >Broad Road</h1>
+              <span>is no reason to relax...</span>
             </div>
-            <button class="button start__button" type="button">Start</button>
+            <div class="menu__content">
+              <div><img src="./assets/image/keys/arrows.png" alt="controls"><span>move car</span></div>
+              <div><img src="./assets/image/keys/enter.png" alt="controls">play - pause</span></div>
+            </div>
+            <button type="button" class="button start__button">Start</button>
           </div>
-      </section>
+        </section>
         <div class="footer">
           <div class="footer__container">
             <div class="github-block">         
                 <a href="https://github.com/GeoBo/" target="_blank" rel="author">
                   <svg class="icon icon-github"><use xlink:href="./assets/image/github.svg#icon-github"></use></svg>
                 </a>
-                <div>2022</div>
+                <span class="data-of-created">2022</span>
             </div>
             <div>
               <a href="https://rs.school/js-stage0/" target="_blank" rel="school">
                 <img class="icon-rss" src="./assets/image/rs_school.svg" alt="RS Logo">
               </a>
             </div>
+         </div>
         </div>
+        <button type="button" class="button-pause hide"><span class="button-pause__icon"></span></button>
+        <button type="button" class="button-mute hide"><span class="button-mute__icon"></span></button>
       </div>
-    </div>
       <script src="app.js"></script>
   </body>
 </html>

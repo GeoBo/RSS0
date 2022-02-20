@@ -1,28 +1,30 @@
 let screen = document.querySelector (".screen");
+let menu = document.querySelector (".menu");
+let menuContent = document.querySelector (".menu__content");
+let startButton = document.querySelector (".start__button");
 let canvas = document.querySelector ("canvas"); 
 let ctx = canvas.getContext ("2d");
-ctx.font = "30px Arial";
-let scale; //Масштаб машин
-let roads = [];  //Анимированный фон
-let objects = []; //Массив игровых объектов
+let btnPause = document.querySelector (".button-pause");
+let btnMute = document.querySelector (".button-mute");
+let footer = document.querySelector (".footer");
+let scale;
+let roads = [];  
+let objects = [];
 let player = 0;
 let timerScreenUpdate;
 let timerKeyboard;
 let currentKey;
 let speed;
-//let imagePath = "https://raw.githubusercontent.com/evgeniikucheriavii/JS-Game/master/images/";
 let imagePath = "./assets/image/road/";
 let timeStart = new Date().getTime();
-let timePause = 0;
 let timePauseStart = timeStart;
-let carWidth = 402;
-//let carHeight = 790;
+let timePause = 0;
 let outCars = 0;
-let menu = document.querySelector (".menu");
-let startButton = document.querySelector (".start__button");
-//let pauseIcon = document.querySelector (".pause__icon");
+let carWidth = 402;
 let isPlayed = false;
-let cars = ['blue', 'green', 'white', 'yellow', 'police'];
+let cars = ['blue', 'green', 'red', 'yellow', 'police'];
+let audio = new Audio ();
+let isGameOver;
 
 class Car {
     constructor (image, x, y, speed) {
@@ -46,8 +48,8 @@ class Car {
         car.stopped = true;
     }
     move (v, d) {
-        if(v == "x") {//Перемещение по оси X
-            this.x += d; //Смещение
+        if(v == "x") {
+            this.x += d; 
             if (this.x + this.image.width * scale > canvas.width) {
                 this.x -= d; 
             }
@@ -67,8 +69,10 @@ class Car {
     }
     collide (car) {
         if (this.stopped && car.stopped) return false;
-        if (this.y < car.y + (car.image.height-50) * scale && this.y + (car.image.height-50) * scale > car.y) {
+        if (this.y < car.y + (car.image.height-100) * scale && this.y + (car.image.height-100) * scale > car.y) {
             if (this.x + (this.image.width-70) * scale > car.x && this.x < car.x + (this.image.width-70) * scale) {
+                playBoom ();     
+                if (!this.speed) speed = 0;    
                 this.stop (car);              
                 objects.push (new Fire(`${imagePath}fire.png`, this.x + this.image.width*scale/2 -99*scale, this.y, this.speed));
                 objects.push (new Fire(`${imagePath}fire.png`, car.x + car.image.width*scale/2 -99*scale, car.y, this.speed));    
@@ -127,38 +131,50 @@ const resizeCanvas = function () {
     scale = Math.floor (canvas.width /4000 *100) /100;
     speed = Math.floor (canvas.width /64 *100) /100;
    
-    roads = [ //Массив с фонами
+    roads = [ 
         new Road (`${imagePath}road.jpg`, -canvas.height), 
         new Road (`${imagePath}road.jpg`, -1),
         new Road (`${imagePath}road.jpg`, canvas.height)
     ]; 
   
-    objects = [new Car(`${imagePath}red.png`, Math.floor (screen.offsetWidth/2 - carWidth*scale), Math.floor (screen.offsetHeight/2))]; 
+    objects = [new Car(`${imagePath}white.png`, Math.floor (screen.offsetWidth/2 - carWidth*scale), Math.floor (screen.offsetHeight/2))]; 
 }
 
 window.addEventListener ("resize", resizeCanvas); 
 document.addEventListener ('keydown', function (e) {keyRepeat (e)});
 document.addEventListener ('keyup', function (e) {clearRepeat (e)});
-startButton.addEventListener ('click', function (e) {e.target.blur(); startGame()});
+startButton.addEventListener ('click', function (e) {
+    e.target.blur (); //после click остается фокус и срабатывает enter
+    startGame ();   
+    audio.readyState ? '' : initMusic ();
+});
+
+btnMute.addEventListener ('click', function (e) {
+    if (!e.detail) return false;
+    audio.muted ? btnMute.classList.remove ('muted') : btnMute.classList.add('muted');
+    audio.muted = audio.muted ? false : true;  
+});
 
 resizeCanvas ();
-
-
 
 function startGame () { 
     if (isPlayed) return false;
     timerScreenUpdate = setInterval (updateCanvas, 1000 / 60); //60 Гц
     isPlayed = true;
     menu.classList.add ('hide');
-    //pauseIcon.classList.add ('hide');
+    footer.classList.add ('hide');
+    btnPause.classList.add ('hide');
+    btnMute.classList.remove ('hide');
     timePause += new Date().getTime() - timePauseStart; 
+    audio.readyState ? '' : initMusic ();
 }
 
-function stopGame () { //Остановка обновления 
+function stopGame () {
     if (!isPlayed) return false;
+    if (isGameOver) return false;
     clearInterval (timerScreenUpdate); 
     isPlayed = false;
-    //pauseIcon.classList.remove ('hide');
+    btnPause.classList.remove ('hide');
     timePauseStart = new Date().getTime();
 }
  
@@ -166,7 +182,7 @@ function toggleGame () {
    isPlayed ? stopGame (): startGame ();
 }
 
-function updateCanvas () { //Обновление игры
+function updateCanvas () { 
     roads[0].offset (roads [1]);
     roads[1].offset (roads [2]);
     roads[2].offset (roads [0]);
@@ -187,8 +203,10 @@ function updateCanvas () { //Обновление игры
         for (let j = i+1; j < objects.length; j++) {
             if (objects[j].constructor.name != "Car") continue;
             if (objects[i].collide (objects[j])) {
-                if (i == player || j == player) {
+                // if (i == player || j == player) {
+                if (i == player) {  
                     gameOver ();
+                    speedChange ();
                     break;
                 }
             }
@@ -207,6 +225,14 @@ function updateCanvas () { //Обновление игры
     drawImage ();   
 }
   
+function speedChange (){
+    for (let i = 0; i < objects.length; i++) {
+        if (objects[i].constructor.name != "Car") continue; 
+        if (!objects[i].stopped) objects[i].speed = -objects[i].speed;
+    }
+    
+}
+
 function checkPosition (x, y) {
     for (let i=0; i<objects.length; i++) {   
         if (i == player) continue;   
@@ -218,10 +244,23 @@ function checkPosition (x, y) {
     return true;
 }
 
-function gameOver () {
-    stopGame ();
+function gameOver () {    
+    isGameOver = true;
     saveResult ();
-    // showHistory ();
+    setTimeout (() => {
+        isGameOver = false;
+        stopGame ();
+        showMenu ();
+        restartGame ();    
+    }, 2000);  
+}
+
+function restartGame (){
+    timeStart = new Date().getTime();
+    timePauseStart = timeStart;
+    timePause = 0;
+    outCars = 0;
+    resizeCanvas (); 
 }
 
 function saveResult () {
@@ -230,7 +269,7 @@ function saveResult () {
         date: getCurrentDate (),
         time: getSurvivalTime (),
         cars: outCars,
-        score: outCars*survivalTimeSeconds*10,
+        score: parseInt (outCars*survivalTimeSeconds*10),
         last: '1'
     };
     if (!localStorage.getItem ('game')) localStorage.setItem ('game', JSON.stringify ([result]));
@@ -248,10 +287,9 @@ function saveResult () {
 }
 
 function getSurvivalTime () {
-    // let time = new Date().getTime() - timeStart;
     let time = new Date().getTime() - timeStart - timePause;
+    const ms = time % 1000;
     const second  = parseInt(time / 1000) % 60;
-    const ms = time - second*1000;
     const minute  = parseInt((time / 60) / 1000) % 60;
     // let hour = parseInt(((time / 60) / 60) / 1000) % 24;
     return `${minute}:${getTwoDigits (second)}.${getThreeDigits (ms)}`;
@@ -275,19 +313,61 @@ function getThreeDigits (n) {
     else return n;
 }
 
+function showMenu (){
+    menu.classList.remove ('hide');
+    menu.classList.add ('records');
+    footer.classList.remove ('hide');
+    btnPause.classList.add ('hide');
+    btnMute.classList.add ('hide');
+    showHistory ();
+};
+
 function showHistory () {
+    
+    let table = document.createElement ('table');
+    let thead = document.createElement ('thead');
+    let tbody = document.createElement ('tbody');
+    table.append (thead);
+    table.append (tbody);
+    
+    menuContent.innerHTML ="";
+    menuContent.append (table);
+
+    let headContent = ['','Date','Time', 'Cars', 'Score'];
+    let headRow = document.createElement('tr');
+
+    headContent.forEach (text => {
+        let heading = document.createElement ('th');
+        heading.innerHTML = text;
+        headRow.append (heading);
+    });
+
+    thead.append (headRow);
+
     let history = JSON.parse (localStorage.getItem ('game'));
-    // history.forEach (el => {console.log (el)}); 
+
     history.forEach ( (el, index) => {
-      console.log (index + 1);
+        let row = document.createElement ('tr');
+        let column = document.createElement ('td');
+        column.innerHTML = index + 1;   
+        row.append (column);
         for (let key in el) {
-            if (key == "last") continue;
-            console.log (el[key]);
+            if (key == "last") {
+                if (el[key]) {
+                    row.classList.add ('last-record');
+                    row.childNodes[0].innerHTML = "You";
+                }
+                continue;
+            }
+            let column = document.createElement ('td');
+            column.innerHTML = el[key];   
+            row.append (column);
         }
+        tbody.append (row);
     }); 
 }
 
-function drawImage () { //Работа с графикой
+function drawImage () { 
     ctx.clearRect (0, 0, canvas.width, canvas.height);
     roads.forEach (road => {
         ctx.drawImage (
@@ -302,9 +382,35 @@ function drawImage () { //Работа с графикой
             obj.x, obj.y, obj.image.width *scale, obj.image.height *scale
         );
     });
-    ctx.fillText (getSurvivalTime (), canvas.width-60, canvas.height-20); 
+    
+    if (!isGameOver) placeText (getSurvivalTime (), canvas.width, 0);
+    if (isGameOver) placeText2 ("GAME OVER", canvas.width/2, canvas.height/2);
  }
-   
+  
+function placeText (text, x, y){
+    ctx.font = "13pt Courier"; 
+    ctx.fillStyle = "#bfae82";
+    ctx.textAlign = "left";
+    // ctx.fillStyle = "#b3b3b3";
+    //let textMeas = ctx.measureText (text); // 83
+    //let txtHeight = parseInt (ctx.font); //17
+    let textMeas = 83;
+    let txtHeight = 17;
+    ctx.fillText (text, x - textMeas -200*scale, y + txtHeight);
+    // ctx.fillText (text, x - textMeas.width -200*scale, y + txtHeight); 
+}
+
+function placeText2 (text, x, y){
+    ctx.font = "17pt Arial"; 
+    ctx.fillStyle = "#bfae82";
+    //ctx.fillStyle = "#b3b3b3";
+    let textMeas = ctx.measureText (text);
+    let txtHeight = parseInt (ctx.font);
+    //console.log (txtHeight);
+    //ctx.fillText (text, x - textMeas -200*scale, y + txtHeight);
+    ctx.fillText (text, x - textMeas.width/2, y + txtHeight); 
+}
+
 function driveCar (e) {
     switch (e.keyCode) {
         case 37: objects[player].move ('x', -speed); //Влевр
@@ -315,7 +421,6 @@ function driveCar (e) {
         break;
         case 40: objects[player].move ('y', speed); //Вниз
         break;
-        // case 13: startGame (); //Enter
         case 13: toggleGame (); //Enter
         break;
         case 27: stopGame (); //Esc
@@ -345,20 +450,30 @@ function clearRepeat (e) {
     timerKeyboard = null;
 }
 
-function playMusic () {
-    let audio = new Audio();
-    let myfiles=["longlost.mp3","Nightcore.mp3"];
+function initMusic () {
+    //let audio = new Audio ();
+    let myfiles = ["autobahn.mp3","axel_f.mp3", "taxi.mp3"];
     audio.controls = false;
-    audio.autoplay = true ;
+    audio.autoplay = true;
+    audio.volume = 0.2;
     audio.onended = function (){
-        let len = myfiles.length;
+        let len = myfiles.length; 
         if (len){
             let index = random (0, len -1);
-            let path = `audio/${myfiles.splice (index, 1)[0]}`;
-            this.src  = path;
+            let path = `./assets/audio/music/${myfiles.splice (index, 1)[0]}`;
+            this.src = path;
             this.play ();
        }
    }
+   audio.onended ();
+}
+
+function playBoom () {
+    let path ="./assets/audio/effects/boom.mp3";
+    let audio = new Audio (path);
+    audio.controls = false;
+    audio.autoplay = true;
+    audio.volume = 0.2;
 }
 
 function random (min, max) {
@@ -366,4 +481,3 @@ function random (min, max) {
     return Math.floor (rand);
 }
 
-console.clear();
