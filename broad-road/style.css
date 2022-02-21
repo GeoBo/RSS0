@@ -28,9 +28,7 @@ img {
 }
 
 svg {
-    *fill: var(--text-color);
     fill: var(--color-gold);
-    *fill: var(--color-white);
 }
 
 button:focus{
@@ -41,15 +39,11 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     font-size: 0.7em;
+    font-family: arial;
 }
 
 th, td{
     padding: 0.5em 2em;
-}
-
-th:nth-child(1), th:nth-child(4),
-td:nth-child(1), td:nth-child(4){
-    *padding: 0.5em 0.5em;
 }
 
 .body {
@@ -59,10 +53,10 @@ td:nth-child(1), td:nth-child(4){
     width: 100%;
     height: 100%;
     overflow: hidden;
-    *color: var(--text-color);
     color: var(--color-gold);
     background: var(--background-color);
     font-size: 4vh;
+    font-family: Merriweather, arial;
 }
 
 .screen {
@@ -107,19 +101,16 @@ td:nth-child(1), td:nth-child(4){
 }
 
 .records .menu__content {
-    *color: #d1c0a4;
-    *color: #d0bea0;
     color: #dcd5c7;
 }
 
 .last-record {
-    color: #d0bea0;
     color: #72c672;
-    *font-weight: bold;
 }
 
 .menu__title {
     text-align: center;
+    *font-family: Merriweather
 }
 
 .menu__title h1{
@@ -141,7 +132,7 @@ td:nth-child(1), td:nth-child(4){
 }
 
 .menu__content > div {
-    flex-basis: 6em;
+    flex-basis: 6.1em;
 }
 
 .button {

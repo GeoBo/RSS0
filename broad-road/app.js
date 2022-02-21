@@ -25,6 +25,9 @@ let isPlayed = false;
 let cars = ['blue', 'green', 'red', 'yellow', 'police'];
 let audio = new Audio ();
 let isGameOver;
+let level = 1;
+let isLevelUp = false;
+let chance = 9950;
 
 class Car {
     constructor (image, x, y, speed) {
@@ -115,29 +118,34 @@ class Road {
     }
 }
 
-const resizeCanvas = function () {
-    if (window.innerHeight < window.innerWidth) {   
-        screen.style.width = window.innerHeight + 'px';
-        screen.style.height = window.innerHeight + 'px';
-    }
-    else {
-        screen.style.width = window.innerWidth + 'px';
-        screen.style.height = window.innerWidth + 'px';   
-    }
+const resizeCanvas = function (e, speedUp = false) {
+    if(!speedUp){
+        if (window.innerHeight < window.innerWidth) {   
+            screen.style.width = window.innerHeight + 'px';
+            screen.style.height = window.innerHeight + 'px';
+        }
+        else {
+            screen.style.width = window.innerWidth + 'px';
+            screen.style.height = window.innerWidth + 'px';   
+        }
 
-    canvas.width = screen.offsetWidth;
-    canvas.height = screen.offsetHeight;
-  
-    scale = Math.floor (canvas.width /4000 *100) /100;
-    speed = Math.floor (canvas.width /64 *100) /100;
-   
+        canvas.width = screen.offsetWidth;
+        canvas.height = screen.offsetHeight;
+
+        scale = Math.floor (canvas.width /4000 *100) /100;   
+        speed = Math.floor (canvas.width /64 *100) /100; //скорость дороги
+    }    
+        
+    if (level > 5) speed += speed / 5;
+    if (level > 12) speed += speed / 6;
+
     roads = [ 
         new Road (`${imagePath}road.jpg`, -canvas.height), 
         new Road (`${imagePath}road.jpg`, -1),
         new Road (`${imagePath}road.jpg`, canvas.height)
     ]; 
   
-    objects = [new Car(`${imagePath}white.png`, Math.floor (screen.offsetWidth/2 - carWidth*scale), Math.floor (screen.offsetHeight/2))]; 
+    if(!speedUp) objects = [new Car(`${imagePath}white.png`, Math.floor (screen.offsetWidth/2 - carWidth*scale), Math.floor (screen.offsetHeight/2))]; 
 }
 
 window.addEventListener ("resize", resizeCanvas); 
@@ -199,11 +207,10 @@ function updateCanvas () {
     }
   
     for (let i = 0; i < objects.length; i++) {
-        if(objects[i].constructor.name != "Car") continue;
+        if (objects[i].constructor.name != "Car") continue;
         for (let j = i+1; j < objects.length; j++) {
             if (objects[j].constructor.name != "Car") continue;
             if (objects[i].collide (objects[j])) {
-                // if (i == player || j == player) {
                 if (i == player) {  
                     gameOver ();
                     speedChange ();
@@ -212,13 +219,14 @@ function updateCanvas () {
             }
         }
     } 
-    if (random (0, 10000) > 9700) {
+
+    if (random (0, 10000) > chance) {
         let carType = random (0, cars.length -1);  
         let x = random (0, canvas.width -carWidth*scale);
         let y = random (250, 400) *-1*scale*3;
-        if (checkPosition (x, y)) {  
-            let carSpeed = speed/2;
-            if (random (0, 10000) > 8000) carSpeed = speed *7 /8 ;
+        if (checkPosition (x, y)) {     
+            let carSpeed = Math.floor (speed/2);  
+            if (random (0, 10000) > 8000) carSpeed = Math.floor (speed *7 /8);       
             objects.push (new Car(`${imagePath}${cars[carType]}.png`, x, y, carSpeed));  
         }    
     }   
@@ -246,6 +254,7 @@ function checkPosition (x, y) {
 
 function gameOver () {    
     isGameOver = true;
+    isLevelUp = false;
     saveResult ();
     setTimeout (() => {
         isGameOver = false;
@@ -260,6 +269,8 @@ function restartGame (){
     timePauseStart = timeStart;
     timePause = 0;
     outCars = 0;
+    level = 1;
+    chance = 9950;
     resizeCanvas (); 
 }
 
@@ -288,11 +299,26 @@ function saveResult () {
 
 function getSurvivalTime () {
     let time = new Date().getTime() - timeStart - timePause;
+    checkLevel (time);
     const ms = time % 1000;
     const second  = parseInt(time / 1000) % 60;
     const minute  = parseInt((time / 60) / 1000) % 60;
-    // let hour = parseInt(((time / 60) / 60) / 1000) % 24;
     return `${minute}:${getTwoDigits (second)}.${getThreeDigits (ms)}`;
+}
+
+function checkLevel (time) {
+    let levelTime = 10000; //каждые 10c повышение уровня
+    if (time > level*levelTime) { 
+        level++;
+        if (level == 6) resizeCanvas (true);
+        if (level == 13) resizeCanvas (true);
+
+        if (level > 5) chance = Math.max (10000 - (level-5)*50, 9600);
+        else if (level > 12) chance = Math.max (10000 - (level-12)*50, 9600);
+        else chance = Math.max (10000 - level*50, 9600);
+        isLevelUp = true;
+        setTimeout(() => {isLevelUp = false}, 2000);
+    }   
 }
 
 function getCurrentDate () {
@@ -384,8 +410,10 @@ function drawImage () {
     });
     
     if (!isGameOver) placeText (getSurvivalTime (), canvas.width, 0);
-    if (isGameOver) placeText2 ("GAME OVER", canvas.width/2, canvas.height/2);
- }
+    if (isGameOver) placeTextCenter ("GAME OVER", canvas.width/2, canvas.height/2);
+    if (isLevelUp) placeTextCenter (`LEVEL ${level}`, canvas.width/2, canvas.height/2);
+
+}
   
 function placeText (text, x, y){
     ctx.font = "13pt Courier"; 
@@ -400,7 +428,7 @@ function placeText (text, x, y){
     // ctx.fillText (text, x - textMeas.width -200*scale, y + txtHeight); 
 }
 
-function placeText2 (text, x, y){
+function placeTextCenter (text, x, y){
     ctx.font = "17pt Arial"; 
     ctx.fillStyle = "#bfae82";
     //ctx.fillStyle = "#b3b3b3";
@@ -453,17 +481,17 @@ function clearRepeat (e) {
 function initMusic () {
     //let audio = new Audio ();
     let myfiles = ["autobahn.mp3","axel_f.mp3", "taxi.mp3"];
+    let clone = myfiles.slice (0);
     audio.controls = false;
     audio.autoplay = true;
     audio.volume = 0.2;
     audio.onended = function (){
+        if (!myfiles.length) myfiles = clone.slice (0);
         let len = myfiles.length; 
-        if (len){
-            let index = random (0, len -1);
-            let path = `./assets/audio/music/${myfiles.splice (index, 1)[0]}`;
-            this.src = path;
-            this.play ();
-       }
+        let index = random (0, len -1);
+        let path = `./assets/audio/music/${myfiles.splice (index, 1)[0]}`;
+        this.src = path;
+        this.play ();
    }
    audio.onended ();
 }
