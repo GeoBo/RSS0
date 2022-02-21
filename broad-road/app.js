@@ -1,4 +1,3 @@
-
 import FluentRevealEffect  from "./assets/js/fluent-reveal-effect/index.js";
 
 let screen = document.querySelector (".screen");
@@ -14,7 +13,7 @@ let scale;
 let roads = [];  
 let objects = [];
 let player = 0;
-let timerScreenUpdate;
+//let timerScreenUpdate;
 let timerKeyboard;
 let currentKey;
 let speed;
@@ -170,20 +169,22 @@ resizeCanvas ();
 
 function startGame () { 
     if (isPlayed) return false;
-    timerScreenUpdate = setInterval (updateCanvas, 1000 / 60); //60 Гц
+    //timerScreenUpdate = setInterval (updateCanvas, 1000 / 60); //60 Гц   
     isPlayed = true;
+    //requestAnimationFrame(updateCanvas);  
     menu.classList.add ('hide');
     footer.classList.add ('hide');
     btnPause.classList.add ('hide');
     btnMute.classList.remove ('hide');
     timePause += new Date().getTime() - timePauseStart; 
     audio.readyState ? '' : initMusic ();
+    updateCanvas ();
 }
 
 function stopGame () {
     if (!isPlayed) return false;
     if (isGameOver) return false;
-    clearInterval (timerScreenUpdate); 
+    //clearInterval (timerScreenUpdate); 
     isPlayed = false;
     btnPause.classList.remove ('hide');
     timePauseStart = new Date().getTime();
@@ -234,14 +235,14 @@ function updateCanvas () {
         }    
     }   
     drawImage ();   
+    if (isPlayed) requestAnimationFrame (updateCanvas); 
 }
   
 function speedChange (){
     for (let i = 0; i < objects.length; i++) {
         if (objects[i].constructor.name != "Car") continue; 
         if (!objects[i].stopped) objects[i].speed = -objects[i].speed;
-    }
-    
+    }   
 }
 
 function checkPosition (x, y) {
@@ -263,8 +264,10 @@ function gameOver () {
         isGameOver = false;
         stopGame ();
         showMenu ();
-        restartGame ();    
-    }, 2000);  
+        setTimeout (() => {
+            restartGame ();    
+        }, 1000);
+    }, 1500);  
 }
 
 function restartGame (){
@@ -504,7 +507,7 @@ function playBoom () {
     let audio = new Audio (path);
     audio.controls = false;
     audio.autoplay = true;
-    audio.volume = 0.2;
+    audio.volume = 0.4;
 }
 
 function random (min, max) {
