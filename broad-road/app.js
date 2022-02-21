@@ -1,3 +1,6 @@
+
+import FluentRevealEffect  from "./assets/js/fluent-reveal-effect/index.js";
+
 let screen = document.querySelector (".screen");
 let menu = document.querySelector (".menu");
 let menuContent = document.querySelector (".menu__content");
@@ -149,6 +152,7 @@ const resizeCanvas = function (e, speedUp = false) {
 }
 
 window.addEventListener ("resize", resizeCanvas); 
+window.addEventListener ("load", initStartBtn);
 document.addEventListener ('keydown', function (e) {keyRepeat (e)});
 document.addEventListener ('keyup', function (e) {clearRepeat (e)});
 startButton.addEventListener ('click', function (e) {
@@ -156,7 +160,6 @@ startButton.addEventListener ('click', function (e) {
     startGame ();   
     audio.readyState ? '' : initMusic ();
 });
-
 btnMute.addEventListener ('click', function (e) {
     if (!e.detail) return false;
     audio.muted ? btnMute.classList.remove ('muted') : btnMute.classList.add('muted');
@@ -509,3 +512,17 @@ function random (min, max) {
     return Math.floor (rand);
 }
 
+function initStartBtn (){
+    FluentRevealEffect.applyEffect(".menu__container", {
+        clickEffect: true,
+        lightColor: "rgba(255,255,255,1)",
+        gradientSize: 80,
+        isContainer: true,
+        children: {
+            borderSelector: ".btn__border",
+            elementSelector: ".start__button",
+            lightColor: "rgba(255,255,255,0.4)",
+            gradientSize: 80
+        }
+    })
+}

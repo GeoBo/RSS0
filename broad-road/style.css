@@ -135,19 +135,29 @@ th, td{
     flex-basis: 6.1em;
 }
 
+.btn__border {
+    display: inline-block;
+    padding: 3px;
+    *margin: 3px;
+    z-index: 1;
+    border-radius: 6px;
+}
+
 .button {
     font-size: inherit;
+    *font-family: inherit;
     background-color: var(--color-gold);
-    padding: 0.5em 4em;
+    padding: 0.5em 3.5em;
     border-radius: 6px;
-    cursor: pointer; 
-    z-index: 1;
+    cursor: pointer;   
+    border: none;
 }
 
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+    pointer-events: none;
 }
 
 .footer__container {
@@ -162,6 +172,7 @@ th, td{
     flex-direction: column;
     align-items: center;
     font-weight: bold;
+    pointer-events: auto;
 }
 
 .icon-github{
@@ -175,6 +186,7 @@ th, td{
 
 .icon-rss {
     width: 2.5em;
+    pointer-events: auto;
 } 
 
 .button-pause {
@@ -191,7 +203,6 @@ th, td{
 
 .button-pause.hide {
     transition: ease-out 0.4s; 
-    *transition: none; 
 }
 
 .button-pause__icon {  
@@ -251,7 +262,7 @@ th, td{
       font-size: 18px;
   }
   .button{
-      padding: 0.3em 3em;
+      padding: 0.4em 3em;
   }
   .footer__container {
       padding: 0 20px;

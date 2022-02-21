@@ -1,0 +1,69 @@
+{
+  "_from": "fluent-reveal-effect@latest",
+  "_id": "fluent-reveal-effect@2.0.8",
+  "_inBundle": false,
+  "_integrity": "sha512-wQTrZ9ceTMctAuA/E4Tf6ElHVmcnp/22uc2xxftDoxGZdI1lmwWT4LXIKPrVWyILZbjLjja1EkNngL1ZduqwAQ==",
+  "_location": "/fluent-reveal-effect",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "fluent-reveal-effect@latest",
+    "name": "fluent-reveal-effect",
+    "escapedName": "fluent-reveal-effect",
+    "rawSpec": "latest",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/fluent-reveal-effect/-/fluent-reveal-effect-2.0.8.tgz",
+  "_shasum": "52d87f740f3ef032494c3bfb6d6ed9488d90728a",
+  "_spec": "fluent-reveal-effect@latest",
+  "_where": "G:\\Git\\geobo-JSFEPRESCHOOL\\portfolio\\assets\\js",
+  "author": {
+    "name": "Duong Dieu Phap"
+  },
+  "bugs": {
+    "url": "https://github.com/d2phap/fluent-reveal-effect/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Reveal Effect (Fluent Design)",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^3.10.0"
+  },
+  "homepage": "https://github.com/d2phap/fluent-reveal-effect#readme",
+  "keywords": [
+    "fluent",
+    "design",
+    "ui",
+    "toolkit",
+    "fluent design",
+    "fluent interface",
+    "fluent design system",
+    "css framework",
+    "javascript plugin",
+    "ui components",
+    "ui kit",
+    "fluent ui",
+    "fluent reveal effect"
+  ],
+  "license": "MIT",
+  "main": "../Dist/js/[name].js",
+  "name": "fluent-reveal-effect",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d2phap/fluent-reveal-effect.git"
+  },
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "2.0.8"
+}
